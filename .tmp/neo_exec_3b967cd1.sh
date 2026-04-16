@@ -1,1 +1,0 @@
-cd /home/azureuser/slm_eval_harness && git init && git add -A && git commit -m "Initial commit: SLM Evaluation Harness with multi-benchmark support"
