@@ -1,0 +1,49 @@
+# HellaSwag Commonsense Reasoning Benchmark - Smoke Test Configuration
+# 20 samples, ~3 minutes
+
+name: hellaswag_mini
+task_type: multiple_choice
+description: |
+  HellaSwag smoke test with 20 samples for quick validation.
+  Use this for testing the evaluation pipeline before running full suite.
+
+dataset:
+  path: Rowan/hellaswag
+  loader: hellaswag
+  split: validation
+  subset: null
+  num_samples: 20  # Smoke test: first 20 samples
+
+prompt:
+  template: |
+    {prompt}
+  system_message: |
+    You are a helpful assistant. Answer the multiple choice question by selecting the best option (A, B, C, or D).
+    Only respond with the letter of your choice.
+  few_shot: []
+
+generation:
+  max_tokens: 512
+  temperature: 0.0
+  top_p: 1.0
+  stop_sequences: []
+  num_return_sequences: 1
+
+parsing:
+  parser: mc
+  extraction_mode: last_block
+  language: null
+
+evaluation:
+  metric: multiple_choice
+  k: 1
+  timeout: 5.0
+  sandbox: false
+
+metadata:
+  version: "1.0"
+  author: "slm-eval-harness"
+  tags:
+    - reasoning
+    - commonsense
+    - smoke-test

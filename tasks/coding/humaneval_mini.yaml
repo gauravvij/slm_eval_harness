@@ -1,0 +1,55 @@
+# HumanEval Coding Benchmark - Smoke Test Configuration
+# 20 samples, ~5 minutes
+
+name: humaneval_mini
+task_type: coding
+description: |
+  HumanEval smoke test with 20 samples for quick validation.
+  Use this for testing the evaluation pipeline before running full suite.
+
+dataset:
+  path: openai_humaneval
+  loader: humaneval
+  split: test
+  subset: null
+  num_samples: 20  # Smoke test: first 20 samples
+
+prompt:
+  template: |
+    {prompt}
+    
+    Please complete the function:
+  system_message: |
+    You are a helpful coding assistant. Write clean, correct Python code.
+    Only provide the code implementation, no explanations.
+  few_shot: []
+
+generation:
+  max_tokens: 512
+  temperature: 0.0
+  top_p: 1.0
+  stop_sequences:
+    - "\nclass"
+    - "\ndef"
+    - "\n#"
+    - "\nif __name__"
+  num_return_sequences: 1
+
+parsing:
+  parser: code
+  extraction_mode: last_block
+  language: python
+
+evaluation:
+  metric: pass_at_k
+  k: 1
+  timeout: 5.0
+  sandbox: true
+
+metadata:
+  version: "1.0"
+  author: "slm-eval-harness"
+  tags:
+    - coding
+    - python
+    - smoke-test

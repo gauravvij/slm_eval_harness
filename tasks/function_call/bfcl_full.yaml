@@ -1,0 +1,50 @@
+# BFCL Function Calling Benchmark - Full Configuration
+# All major subsets, no sample limit
+
+name: bfcl_full
+task_type: function_call
+description: |
+  Full BFCL evaluation with all major subsets.
+  Includes: simple, multiple, parallel, exec_simple, live_simple
+  Estimated 400+ samples across all subsets.
+
+dataset:
+  path: gorilla-llm/Berkeley-Function-Calling-Leaderboard
+  loader: bfcl
+  split: train
+  subset: simple  # Primary subset with 400+ samples
+  num_samples: null  # All samples
+
+prompt:
+  template: |
+    {prompt}
+  system_message: |
+    You are a helpful assistant with access to functions.
+    Respond with valid JSON function calls only.
+  few_shot: []
+
+generation:
+  max_tokens: 512
+  temperature: 0.0
+  top_p: 1.0
+  stop_sequences: []
+  num_return_sequences: 1
+
+parsing:
+  parser: json
+  extraction_mode: last_block
+  language: json
+
+evaluation:
+  metric: json_validity
+  k: 1
+  timeout: 5.0
+  sandbox: false
+
+metadata:
+  version: "1.0"
+  author: "slm-eval-harness"
+  tags:
+    - function-call
+    - json
+    - full-benchmark

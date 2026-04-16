@@ -1,0 +1,51 @@
+# HellaSwag Commonsense Reasoning Benchmark - Full Configuration
+# 1000 samples, ~15 minutes
+
+name: hellaswag
+task_type: multiple_choice
+description: |
+  HellaSwag is a benchmark for commonsense natural language inference.
+  It tests a model's ability to complete scenarios with commonsense reasoning.
+  Each example has a context and 4 possible endings (A, B, C, D).
+
+dataset:
+  path: Rowan/hellaswag
+  loader: hellaswag
+  split: validation  # HellaSwag uses 'validation' for test
+  subset: null
+  num_samples: 1000  # Use first 1000 samples
+
+prompt:
+  template: |
+    {prompt}
+  system_message: |
+    You are a helpful assistant. Answer the multiple choice question by selecting the best option (A, B, C, or D).
+    Only respond with the letter of your choice.
+  few_shot: []
+
+generation:
+  max_tokens: 1024
+  temperature: 0.0
+  top_p: 1.0
+  stop_sequences:
+    - "\n"
+  num_return_sequences: 1
+
+parsing:
+  parser: mc
+  extraction_mode: last_block
+  language: null
+
+evaluation:
+  metric: multiple_choice
+  k: 1
+  timeout: 5.0
+  sandbox: false
+
+metadata:
+  version: "1.0"
+  author: "slm-eval-harness"
+  tags:
+    - reasoning
+    - commonsense
+    - multiple-choice

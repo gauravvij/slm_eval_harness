@@ -1,0 +1,472 @@
+{
+  "task_name": "hellaswag_mini",
+  "model_name": "gemma4:e4b-fixed",
+  "completed_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "results": [
+    {
+      "sample_id": "hellaswag_0",
+      "parsed_result": {
+        "content": "D",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**D) starts pulling up roofing on a roof.**\n\n**Reasoning:** Options B and D are the most contextually relevant, as they involve roofing materials. However, \"starts pulling up roofing on a roof\" is the most general and encompassing action that describes a person actively working on the structure they are",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "D",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 59.615013122558594,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 59.61298608779907,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_1",
+      "parsed_result": {
+        "content": "B",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**B) pulls the barbell forward.**\n\n**Reasoning:** When a person bends down and grabs a barbell, the most immediate and logical action is to exert force on it, which is pulling it toward their body. This action is the prerequisite for almost any barbell exercise (deadlifts, rows, squats, etc.).",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 49.53566861152649,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 49.5354323387146,
+        "tokens_generated": 436,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_2",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 59.11217260360718,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 59.11186695098877,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_3",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "**C) lifts his body above the height of a pole.**\n\n**Reasoning:** A running track is a setting for athletic events. Option C describes a specific, high-level athletic feat (like pole vaulting or high jumping) that is directly associated with the equipment and activities found on a track, making it the most contextually likely continuation of the scenario.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 48.8350567817688,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 48.83480882644653,
+        "tokens_generated": 429,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_4",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.9,
+        "parser_used": "mc",
+        "raw_output": "**B) gets up from the mat.**\n\n**Reasoning:** The scenario describes a physical feat (lifting over a pole) followed by a controlled landing. Once the action is complete and the boy is safely on the mat, the most logical and conclusive action is to finish the exercise by getting back up to a standing position.\n\n*   (C) is impossible because he has already landed below the pole.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.26050591468811,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.26024913787842,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_5",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**A) starts doing spins.**\n\n**Reasoning:** The scenario describes athletic movement (landing on a mat, getting up). Options A, B, and C are all forms of physical activity. However, \"starts doing spins\" is a very specific, high-energy continuation of movement that logically follows a landing and rising from a mat, suggesting a performance or practice routine (like gymnastics or",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 57.9796040058136,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 57.979350328445435,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_6",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.9,
+        "parser_used": "mc",
+        "raw_output": "**B) seems to be singing while playing the harmonica.**\n\n**Reasoning:** Playing a harmonica is a musical performance. The most natural and common progression for a musician in this scenario is to enhance the performance by adding vocals (singing) or accompanying the music with other musical elements.\n\n*   (A) is physically awkward and",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.51093602180481,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.51069188117981,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_7",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.42578172683716,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.42572617530823,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_8",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 59.52929139137268,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 59.52923893928528,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_9",
+      "parsed_result": {
+        "content": "B",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**B) grind it hard to make the pieces smaller.**\n\n**Reasoning:** The scenario describes a process of physical reduction (smashing and crushing). Continuing this action by grinding the pieces further is the most logical and consistent continuation of the physical activity established in the text.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 47.832478523254395,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 47.83224821090698,
+        "tokens_generated": 407,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_10",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 60.27957367897034,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 60.278892993927,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_11",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.7333779335022,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.73331689834595,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_12",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**C) then escapes and jumps away.**\n\n**Reasoning:**\n\n*   **Biological Plausibility:** Frogs are amphibians that primarily move by jumping or hopping. \"Escaping and jumping away\" is the most natural",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 58.940266847610474,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.93860363960266,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_13",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**C) explains how the frog secretes a poisonous fluid that can be extremely harmful.**\n\n**Reasoning:** The character has just observed a specific, dangerous, and scientifically interesting creature (a poisonous frog). The most natural and logical continuation for an observant character",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 58.628495931625366,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.62828612327576,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_14",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**A) shoots areas all around the park while the bagpipes play.**\n\n**Reasoning:** This option describes a classic cinematic technique (panning or sweeping shots) that is used to establish the setting, show the environment, and keep the viewer engaged while the main action (the bagpipes) continues. It is the most natural and descriptive continuation of the scene setup.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 57.10883617401123,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 57.1085889339447,
+        "tokens_generated": 501,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_15",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 59.708954095840454,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 59.70889687538147,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_16",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.33222508430481,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.332173109054565,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_17",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.760379791259766,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.76032853126526,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_18",
+      "parsed_result": {
+        "content": "D",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "**B) continue dancing and flipping, doing hand springs.**\n\n**Reasoning:** The scenario is building a high-energy performance. Options A, B, and C describe physical actions related to the performance. Option B maintains the momentum and athletic nature of the routine by suggesting another standard, high-energy cheer move (handsprings/acrobatics). Option D introduces a sudden, confusing",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.51023316383362,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.50999331474304,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    },
+    {
+      "sample_id": "hellaswag_19",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "**A) are done, they shake hands and",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 58.29947066307068,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 58.29937410354614,
+        "tokens_generated": 512,
+        "finish_reason": "length"
+      }
+    }
+  ],
+  "timestamp": "2026-04-11T15:44:49.539170",
+  "metadata": {
+    "config": {
+      "name": "hellaswag_mini",
+      "task_type": "multiple_choice",
+      "dataset_path": "Rowan/hellaswag",
+      "metric": "multiple_choice",
+      "parser": "mc",
+      "max_tokens": 512,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "num_samples": 20,
+      "subset": null,
+      "split": "validation"
+    },
+    "eval_config": {
+      "batch_size": 1,
+      "max_workers": 1,
+      "checkpoint_interval": 10,
+      "enable_checkpoints": true,
+      "timeout": 30.0,
+      "verbose": false
+    }
+  }
+}

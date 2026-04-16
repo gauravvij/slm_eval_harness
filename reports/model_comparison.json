@@ -1,0 +1,52 @@
+{
+  "models": {
+    "qwen3.5:9b": {
+      "humaneval": {
+        "accuracy": 0.7683,
+        "samples": 164,
+        "passed": 126
+      },
+      "bfcl": {
+        "accuracy": 0.9886,
+        "samples": 350,
+        "passed": 346
+      },
+      "hellaswag": {
+        "accuracy": 0.0,
+        "samples": 20,
+        "passed": 0,
+        "note": "Pending full evaluation with 1024 token limit"
+      }
+    },
+    "gemma4:e4b": {
+      "humaneval": {
+        "accuracy": 0.9573,
+        "samples": 164,
+        "passed": 157
+      },
+      "bfcl": {
+        "accuracy": 0.985,
+        "samples": 400,
+        "passed": 394
+      },
+      "hellaswag": {
+        "accuracy": 0.504,
+        "samples": 1000,
+        "passed": 504,
+        "avg_time_per_sample": 64.5,
+        "token_limit": 1024
+      }
+    }
+  },
+  "benchmarks": {},
+  "generated_at": "2025-04-13",
+  "summary": {
+    "total_samples_evaluated": 2098,
+    "models_compared": 2,
+    "benchmarks_completed": 3,
+    "notes": [
+      "gemma4:e4b HellaSwag completed with 1024 token limit (50.4% accuracy)",
+      "qwen3.5:9b HellaSwag pending full evaluation"
+    ]
+  }
+}

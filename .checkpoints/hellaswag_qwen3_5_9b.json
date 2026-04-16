@@ -1,0 +1,4432 @@
+{
+  "task_name": "hellaswag",
+  "model_name": "qwen3.5:9b",
+  "completed_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199
+  ],
+  "results": [
+    {
+      "sample_id": "hellaswag_0",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3038718700409,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_1",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3010756969452,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_2",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3003075122833,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_3",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30251359939575,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_4",
+      "parsed_result": {
+        "content": "B",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: B) gets up from the mat.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 103.60639667510986,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 103.60481929779053,
+        "tokens_generated": 491,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_5",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30108428001404,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_6",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.299654006958,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_7",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3012728691101,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_8",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30187463760376,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_9",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3019697666168,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_10",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2996482849121,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_11",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3018891811371,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_12",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2999975681305,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_13",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.24905943870544,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_14",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "A) shoots areas all around the park while the bagpipes play.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 110.990731716156,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 110.99059557914734,
+        "tokens_generated": 524,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_15",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2997188568115,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_16",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3016917705536,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_17",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2998924255371,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_18",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30079674720764,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_19",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3007745742798,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_20",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29979729652405,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_21",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "A) walks back and forth as he mows the grass.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 101.43654203414917,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 101.43644142150879,
+        "tokens_generated": 484,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_22",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3002371788025,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_23",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2995707988739,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_24",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3012180328369,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_25",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30084443092346,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_26",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30270648002625,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_27",
+      "parsed_result": {
+        "content": "D",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "D) instructs them on how to brush their teeth while laughing.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "D",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 110.90852975845337,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 110.9084222316742,
+        "tokens_generated": 524,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_28",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29973435401917,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_29",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2999680042267,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_30",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3029615879059,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_31",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "A) then wipes its paw on its ear.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 111.74033236503601,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 111.74022054672241,
+        "tokens_generated": 538,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_32",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30148005485535,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_33",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30077028274536,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_34",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3019609451294,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_35",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30417013168335,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_36",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3018002510071,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_37",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "C) see a person holding face wash then putting it on their face.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 64.31923174858093,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 64.31912207603455,
+        "tokens_generated": 305,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_38",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.28748989105225,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_39",
+      "parsed_result": {
+        "content": "B",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: B) gradually throws more and more onto the wall and the camera pans over the finished product.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 99.61586451530457,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 99.61575770378113,
+        "tokens_generated": 472,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_40",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: C) is then shown and several more people begin talking about the product.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 111.74124693870544,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 111.74115180969238,
+        "tokens_generated": 529,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_41",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30157232284546,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_42",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.300509929657,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_43",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3013024330139,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_44",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3002474308014,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_45",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: A) is seen using shears to creatively trim the dog's hair and even dye it in colorful shades of red, green, yellow and blue.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 94.99987983703613,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 94.99975919723511,
+        "tokens_generated": 444,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_46",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30174803733826,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_47",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2997353076935,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_48",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30135560035706,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_49",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: C) is demonstrating how the dog's hair is trimmed with electric shears at their grooming salon.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 113.83696103096008,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 113.83683705329895,
+        "tokens_generated": 542,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_50",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29992389678955,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_51",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30042839050293,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_52",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3028087615967,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_53",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30313634872437,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_54",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30214619636536,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_55",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3006966114044,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_56",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "C) are then seen running down the road one at a time followed by many more following.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 93.48652267456055,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 93.48640418052673,
+        "tokens_generated": 433,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_57",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30065059661865,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_58",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29980540275574,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_59",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29999899864197,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_60",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30057191848755,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_61",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30110144615173,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_62",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "C) watches him and listens to him playing.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 109.91134548187256,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 109.9112458229065,
+        "tokens_generated": 516,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_63",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2999076843262,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_64",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29978609085083,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_65",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30190920829773,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_66",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.300320148468,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_67",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.300665140152,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_68",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3037941455841,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_69",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29993653297424,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_70",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30165433883667,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_71",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3019998073578,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_72",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30064153671265,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_73",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29974365234375,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_74",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30383467674255,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_75",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "C) sets the iron aside and flips the clothing.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 240.8375883102417,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 119.73706340789795,
+        "tokens_generated": 569,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_76",
+      "parsed_result": {
+        "content": "D",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: D) uses the iron on the other side of the clothing.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "D",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 94.78170967102051,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 94.78161239624023,
+        "tokens_generated": 450,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_77",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3007688522339,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_78",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "C) sits down on the chair.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 107.93754553794861,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 107.9374406337738,
+        "tokens_generated": 510,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_79",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "A) strokes the cat's head.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 84.13215041160583,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 84.13206052780151,
+        "tokens_generated": 396,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_80",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3001732826233,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_81",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30335330963135,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_82",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30239057540894,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_83",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3029899597168,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_84",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3018596172333,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_85",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3008015155792,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_86",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3010928630829,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_87",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3010287284851,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_88",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.301940202713,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_89",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3009066581726,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_90",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3015022277832,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_91",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3000018596649,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_92",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30345392227173,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_93",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30508518218994,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_94",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30400228500366,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_95",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3008852005005,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_96",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30100893974304,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_97",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30129981040955,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_98",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.300573348999,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_99",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3007957935333,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_100",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30015301704407,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_101",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30144000053406,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_102",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3015196323395,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_103",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30141258239746,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_104",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30303025245667,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_105",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30198407173157,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_106",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3016457557678,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_107",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30162048339844,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_108",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29978823661804,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_109",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29506754875183,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_110",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3013594150543,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_111",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "A) wipes down the counter and shows off the finished sink.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 91.6859667301178,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 91.68585705757141,
+        "tokens_generated": 428,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_112",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30116748809814,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_113",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3005087375641,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_114",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3009715080261,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_115",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3013799190521,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_116",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30064821243286,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_117",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30091524124146,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_118",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30073404312134,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_119",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3010559082031,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_120",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: C) , the young man finish playing and take off the headsets.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 90.16087603569031,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 90.16078305244446,
+        "tokens_generated": 420,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_121",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3046884536743,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_122",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30071449279785,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_123",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3005645275116,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_124",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29986357688904,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_125",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30064129829407,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_126",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3009853363037,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_127",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29959774017334,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_128",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3018305301666,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_129",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30182456970215,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_130",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3006625175476,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_131",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30078196525574,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_132",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29977011680603,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_133",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30128717422485,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_134",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3031258583069,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_135",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3008244037628,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_136",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30188941955566,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_137",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30185079574585,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_138",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3009920120239,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_139",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3025689125061,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_140",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29991579055786,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_141",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3017544746399,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_142",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29986333847046,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_143",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30069875717163,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_144",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3007733821869,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_145",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.301367521286,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_146",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.302410364151,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_147",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30096459388733,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_148",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3007392883301,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_149",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2997815608978,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_150",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30245327949524,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_151",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3035831451416,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_152",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.303395986557,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_153",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29993438720703,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_154",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2998003959656,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_155",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: A) holds a harmonica between his hands a plays a song.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 101.15841364860535,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 101.15832257270813,
+        "tokens_generated": 481,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_156",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30201625823975,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_157",
+      "parsed_result": {
+        "content": "D",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "D) walk by behind the musician while he plays.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "D",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 118.2248899936676,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 118.22478413581848,
+        "tokens_generated": 560,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_158",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3006958961487,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_159",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30114579200745,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_160",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: C) begins working out on the exercise machine.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 114.21331977844238,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 114.21323132514954,
+        "tokens_generated": 548,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_161",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 1.0,
+        "parser_used": "mc",
+        "raw_output": "Answer: C) falls as the wind lessens.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 100.34072065353394,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 100.34061980247498,
+        "tokens_generated": 481,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_162",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3010165691376,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_163",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30132389068604,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_164",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "C) , the tires are soaped and washed thoroughly.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 109.84145092964172,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 109.84131836891174,
+        "tokens_generated": 515,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_165",
+      "parsed_result": {
+        "content": "A",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "A) is applied and the car is dried.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "A",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 73.46348714828491,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 73.46338963508606,
+        "tokens_generated": 346,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_166",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3017752170563,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_167",
+      "parsed_result": {
+        "content": "B",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "B) tries to look into the tub, but she pulls it away.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "B",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 107.94044423103333,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 107.94033074378967,
+        "tokens_generated": 508,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_168",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30362033843994,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_169",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30291175842285,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_170",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2999424934387,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_171",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30248761177063,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_172",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30079984664917,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_173",
+      "parsed_result": {
+        "content": "C",
+        "confidence": 0.85,
+        "parser_used": "mc",
+        "raw_output": "C) keep jogging, coming in at the end of the race.",
+        "refusal_detected": false,
+        "error": null
+      },
+      "reference": "C",
+      "score": 1.0,
+      "passed": true,
+      "execution_time": 69.01294088363647,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 69.0128345489502,
+        "tokens_generated": 325,
+        "finish_reason": "stop"
+      }
+    },
+    {
+      "sample_id": "hellaswag_174",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30058097839355,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_175",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3020112514496,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_176",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30269408226013,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_177",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3006081581116,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_178",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3001844882965,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_179",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30169916152954,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_180",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30042243003845,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_181",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3010594844818,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_182",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30048394203186,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_183",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3002803325653,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_184",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30338883399963,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_185",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3011546134949,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_186",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30026626586914,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_187",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.2997660636902,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_188",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3001081943512,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_189",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30143785476685,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_190",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3009412288666,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_191",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3042266368866,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_192",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30529141426086,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_193",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30412101745605,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_194",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "C",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30054926872253,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_195",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "B",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29976987838745,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_196",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "D",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.29377579689026,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_197",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30006885528564,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_198",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.30037474632263,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    },
+    {
+      "sample_id": "hellaswag_199",
+      "parsed_result": {
+        "content": "",
+        "confidence": 0.0,
+        "parser_used": "mc",
+        "raw_output": "",
+        "refusal_detected": true,
+        "error": null
+      },
+      "reference": "A",
+      "score": 0.0,
+      "passed": false,
+      "execution_time": 363.3000316619873,
+      "error": null,
+      "diagnostics": {
+        "generation_time": 0.0,
+        "tokens_generated": 0,
+        "finish_reason": "error"
+      }
+    }
+  ],
+  "timestamp": "2026-04-14T03:17:34.248800",
+  "metadata": {
+    "config": {
+      "name": "hellaswag",
+      "task_type": "multiple_choice",
+      "dataset_path": "Rowan/hellaswag",
+      "metric": "multiple_choice",
+      "parser": "mc",
+      "max_tokens": 1024,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "num_samples": 1000,
+      "subset": null,
+      "split": "validation"
+    },
+    "eval_config": {
+      "batch_size": 1,
+      "max_workers": 1,
+      "checkpoint_interval": 50,
+      "enable_checkpoints": true,
+      "timeout": 30.0,
+      "verbose": true
+    }
+  }
+}

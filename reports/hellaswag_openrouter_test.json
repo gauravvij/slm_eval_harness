@@ -1,0 +1,210 @@
+{
+  "model": "qwen/qwen3.5-9b",
+  "total_samples": 20,
+  "passed": 3,
+  "failed": 17,
+  "accuracy": 15.0,
+  "truncated_count": 1,
+  "results": [
+    {
+      "sample_id": "hellaswag_0",
+      "reference": "D",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_1",
+      "reference": "D",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_2",
+      "reference": "C",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_3",
+      "reference": "C",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_4",
+      "reference": "B",
+      "prediction": "B",
+      "raw_output": "B) gets up from the mat.",
+      "finish_reason": "stop",
+      "tokens_generated": 6,
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "sample_id": "hellaswag_5",
+      "reference": "B",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_6",
+      "reference": "C",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_7",
+      "reference": "A",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_8",
+      "reference": "B",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_9",
+      "reference": "B",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_10",
+      "reference": "D",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_11",
+      "reference": "D",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_12",
+      "reference": "C",
+      "prediction": "C",
+      "raw_output": "Answer: C) then escapes and jumps away.",
+      "finish_reason": "stop",
+      "tokens_generated": 9,
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "sample_id": "hellaswag_13",
+      "reference": "C",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_14",
+      "reference": "A",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_15",
+      "reference": "D",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_16",
+      "reference": "C",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_17",
+      "reference": "A",
+      "prediction": "A",
+      "raw_output": "A) get into formation,",
+      "finish_reason": "length",
+      "tokens_generated": 5,
+      "passed": true,
+      "score": 1.0
+    },
+    {
+      "sample_id": "hellaswag_18",
+      "reference": "B",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    },
+    {
+      "sample_id": "hellaswag_19",
+      "reference": "B",
+      "prediction": "",
+      "raw_output": "",
+      "finish_reason": "error",
+      "tokens_generated": 0,
+      "passed": false,
+      "score": 0.0
+    }
+  ]
+}

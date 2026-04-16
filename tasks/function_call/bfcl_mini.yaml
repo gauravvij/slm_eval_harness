@@ -1,0 +1,50 @@
+# Mini-BFCL Function Calling Benchmark - Configuration
+# 100 samples, ~5 minutes
+
+name: bfcl_mini
+task_type: function_call
+description: |
+  Mini-BFCL (Berkeley Function Calling Leaderboard) evaluates function calling capabilities.
+  Tests a model's ability to generate valid JSON function calls from natural language queries.
+  This is the mini version with 100 samples.
+
+dataset:
+  path: gorilla-llm/Berkeley-Function-Calling-Leaderboard
+  loader: bfcl
+  split: test
+  subset: null
+  num_samples: 100  # Mini version: 100 samples
+
+prompt:
+  template: |
+    {prompt}
+  system_message: |
+    You are a helpful assistant with access to functions.
+    Respond with valid JSON function calls only.
+  few_shot: []
+
+generation:
+  max_tokens: 256
+  temperature: 0.0
+  top_p: 1.0
+  stop_sequences: []
+  num_return_sequences: 1
+
+parsing:
+  parser: json
+  extraction_mode: last_block
+  language: json
+
+evaluation:
+  metric: json_validity
+  k: 1
+  timeout: 5.0
+  sandbox: false
+
+metadata:
+  version: "1.0"
+  author: "slm-eval-harness"
+  tags:
+    - function-call
+    - json
+    - tool-use

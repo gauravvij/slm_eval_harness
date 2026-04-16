@@ -1,0 +1,49 @@
+# BFCL Function Calling Benchmark - Smoke Test Configuration
+# 20 samples, ~2 minutes
+
+name: bfcl_tiny
+task_type: function_call
+description: |
+  BFCL smoke test with 20 samples for quick validation.
+  Use this for testing the evaluation pipeline before running full suite.
+
+dataset:
+  path: gorilla-llm/Berkeley-Function-Calling-Leaderboard
+  loader: bfcl
+  split: train
+  subset: simple  # Use simple subset for function calling
+  num_samples: 20  # Smoke test: first 20 samples
+
+prompt:
+  template: |
+    {prompt}
+  system_message: |
+    You are a helpful assistant with access to functions.
+    Respond with valid JSON function calls only.
+  few_shot: []
+
+generation:
+  max_tokens: 256
+  temperature: 0.0
+  top_p: 1.0
+  stop_sequences: []
+  num_return_sequences: 1
+
+parsing:
+  parser: json
+  extraction_mode: last_block
+  language: json
+
+evaluation:
+  metric: json_validity
+  k: 1
+  timeout: 5.0
+  sandbox: false
+
+metadata:
+  version: "1.0"
+  author: "slm-eval-harness"
+  tags:
+    - function-call
+    - json
+    - smoke-test

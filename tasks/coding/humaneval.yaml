@@ -1,0 +1,56 @@
+# HumanEval Coding Benchmark - Full Configuration
+# 164 samples, ~30 minutes
+
+name: humaneval
+task_type: coding
+description: |
+  HumanEval is a benchmark for evaluating code generation capabilities.
+  It consists of 164 hand-written programming problems with test cases.
+  Each problem includes a function signature, docstring, and test cases.
+
+dataset:
+  path: openai_humaneval
+  loader: humaneval
+  split: test
+  subset: null
+  num_samples: null  # Use all 164 samples
+
+prompt:
+  template: |
+    {prompt}
+    
+    Please complete the function:
+  system_message: |
+    You are a helpful coding assistant. Write clean, correct Python code.
+    Only provide the code implementation, no explanations.
+  few_shot: []
+
+generation:
+  max_tokens: 512
+  temperature: 0.0
+  top_p: 1.0
+  stop_sequences:
+    - "\nclass"
+    - "\ndef"
+    - "\n#"
+    - "\nif __name__"
+  num_return_sequences: 1
+
+parsing:
+  parser: code
+  extraction_mode: last_block
+  language: python
+
+evaluation:
+  metric: pass_at_k
+  k: 1
+  timeout: 5.0
+  sandbox: true
+
+metadata:
+  version: "1.0"
+  author: "slm-eval-harness"
+  tags:
+    - coding
+    - python
+    - code-generation
