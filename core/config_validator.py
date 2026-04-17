@@ -135,7 +135,7 @@ TASK_SCHEMA = {
             "properties": {
                 "metric": {
                     "type": "string",
-                    "enum": ["pass_at_k", "exact_match", "multiple_choice", "json_validity", "composite"],
+                    "enum": ["pass_at_k", "exact_match", "multiple_choice", "json_validity", "function_call_match", "composite"],
                     "description": "Metric to use for evaluation"
                 },
                 "k": {

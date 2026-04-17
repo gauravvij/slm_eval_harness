@@ -19,6 +19,7 @@ from core.evaluator import Evaluator, EvaluationConfig
 from core.checkpoint import CheckpointManager
 from adapters.hf_adapter import HuggingFaceAdapter
 from adapters.ollama_adapter import OllamaAdapter
+from adapters.gguf_adapter import GGUFAdapter
 from dataset_loaders.humaneval_loader import HumanEvalLoader
 from dataset_loaders.hellaswag_loader import HellaSwagLoader
 from dataset_loaders.bfcl_loader import BFCLLoader
@@ -62,6 +63,8 @@ def create_adapter(model_type: str, model_name: str, model_args: dict):
         return HuggingFaceAdapter(model_name, **model_args)
     elif model_type == "ollama":
         return OllamaAdapter(model_name, **model_args)
+    elif model_type == "gguf":
+        return GGUFAdapter(model_name, **model_args)
     else:
         raise ValueError(f"Unknown model type: {model_type}")
 
@@ -137,8 +140,13 @@ def create_task(config: dict):
                 test_code = sample.metadata.get('test_code', '')
                 entry_point = sample.metadata.get('entry_point', '')
                 
-                # Build the complete script: prediction (completion) + test code
+                # Build the complete script: prediction (completion) + test code + check call
                 code_to_execute = prediction if prediction else ""
+                
+                # HumanEval test code defines a check(candidate) function but doesn't call it
+                # We need to add the call to actually run the tests
+                if entry_point and 'def check(' in test_code:
+                    test_code = test_code + f"\n\n# Run the check function\ncheck({entry_point})\n"
                 
                 # Execute in sandbox
                 try:
@@ -167,6 +175,88 @@ def create_task(config: dict):
                     return (1.0, True)
                 except:
                     return (0.0, False)
+            elif metric_name == "function_call_match":
+                # For function calling, compare predicted function calls against ground truth
+                import json
+                
+                # Parse prediction
+                try:
+                    if isinstance(prediction, str):
+                        pred_calls = json.loads(prediction)
+                    else:
+                        pred_calls = prediction
+                    
+                    # Ensure it's a list
+                    if isinstance(pred_calls, dict):
+                        pred_calls = [pred_calls]
+                    if not isinstance(pred_calls, list):
+                        return (0.0, False)
+                except:
+                    return (0.0, False)
+                
+                # Parse reference (ground truth)
+                if not reference or not isinstance(reference, list):
+                    return (0.0, False)
+                
+                # Ground truth format: [{'func_name': {'param1': [valid_values], ...}}]
+                # Build a map of expected function calls
+                expected_calls = {}
+                for ref_item in reference:
+                    if isinstance(ref_item, dict):
+                        for func_name, params in ref_item.items():
+                            expected_calls[func_name] = params
+                
+                if not expected_calls:
+                    return (0.0, False)
+                
+                # Compare each predicted call against expected
+                total_calls = len(pred_calls)
+                correct_calls = 0
+                
+                for pred_call in pred_calls:
+                    if not isinstance(pred_call, dict):
+                        continue
+                    
+                    pred_func_name = pred_call.get('name', '')
+                    pred_args = pred_call.get('arguments', {})
+                    
+                    # Check if function name matches
+                    if pred_func_name not in expected_calls:
+                        continue
+                    
+                    expected_params = expected_calls[pred_func_name]
+                    
+                    # Check each parameter
+                    param_correct = True
+                    for param_name, valid_values in expected_params.items():
+                        if param_name not in pred_args:
+                            param_correct = False
+                            break
+                        
+                        pred_value = pred_args[param_name]
+                        
+                        # Handle different valid value formats
+                        if isinstance(valid_values, list):
+                            # Check if predicted value matches any valid value
+                            if pred_value not in valid_values:
+                                param_correct = False
+                                break
+                        elif pred_value != valid_values:
+                            param_correct = False
+                            break
+                    
+                    if param_correct:
+                        correct_calls += 1
+                
+                # Score based on proportion of correct calls
+                if total_calls > 0:
+                    score = correct_calls / total_calls
+                else:
+                    score = 0.0
+                
+                # Passed if at least one call matches
+                passed = correct_calls > 0
+                return (score, passed)
             else:
                 # Default exact match
                 passed = prediction == reference
@@ -365,7 +455,7 @@ Examples:
     # Model arguments
     parser.add_argument(
         '--model', '-m',
-        choices=['hf', 'ollama'],
+        choices=['hf', 'ollama', 'gguf'],
         default='ollama',
         help='Model type (hf or ollama)'
     )
