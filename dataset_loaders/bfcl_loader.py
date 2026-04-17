@@ -52,44 +52,49 @@ class BFCLLoader(BaseDatasetLoader):
     }
     
     def _load_dataset(self):
-        """Load BFCL dataset from HuggingFace with specific file handling."""
+        """Load BFCL dataset from HuggingFace with specific file handling.
+        
+        Loads both question data and ground truth from possible_answer/ subdirectory.
+        """
         path = self.config.dataset_path
         subset = self.config.subset
         
-        # If subset is specified and is a known BFCL subset, load specific file
+        # Determine which subset to load
         if subset and subset in self.BFCL_SUBSETS:
             filename = self.BFCL_SUBSETS[subset]
-            data_url = f"hf://datasets/{path}/{filename}"
-            try:
-                dataset = load_dataset('json', data_files=data_url, split='train')
-                return dataset
-            except Exception as e:
-                raise RuntimeError(f"Failed to load BFCL subset {subset} from {data_url}: {e}")
         elif subset == "tiny" or subset == "mini":
-            # For smoke tests, use simple subset
             filename = self.BFCL_SUBSETS.get("simple", "BFCL_v3_simple.json")
-            data_url = f"hf://datasets/{path}/{filename}"
-            try:
-                dataset = load_dataset('json', data_files=data_url, split='train')
-                return dataset
-            except Exception as e:
-                raise RuntimeError(f"Failed to load BFCL simple subset from {data_url}: {e}")
         else:
-            # Try loading the default config with streaming to avoid generation errors
-            try:
-                dataset = load_dataset(path, 'default', split='train', streaming=True)
-                # Convert streaming dataset to list for compatibility
-                # This loads all data - for large datasets, use subset
-                return list(dataset)
-            except Exception as e:
-                # Fallback: try loading simple subset
-                filename = self.BFCL_SUBSETS.get("simple", "BFCL_v3_simple.json")
-                data_url = f"hf://datasets/{path}/{filename}"
-                try:
-                    dataset = load_dataset('json', data_files=data_url, split='train')
-                    return dataset
-                except Exception as e2:
-                    raise RuntimeError(f"Failed to load BFCL dataset: {e}, fallback also failed: {e2}")
+            filename = self.BFCL_SUBSETS.get("simple", "BFCL_v3_simple.json")
+        
+        # Load question data
+        data_url = f"hf://datasets/{path}/{filename}"
+        try:
+            question_dataset = load_dataset('json', data_files=data_url, split='train')
+        except Exception as e:
+            raise RuntimeError(f"Failed to load BFCL questions from {data_url}: {e}")
+        
+        # Load ground truth from possible_answer subdirectory
+        answer_url = f"hf://datasets/{path}/possible_answer/{filename}"
+        try:
+            answer_dataset = load_dataset('json', data_files=answer_url, split='train')
+            # Create a mapping from id to ground_truth
+            answer_map = {item['id']: item.get('ground_truth', []) for item in answer_dataset}
+        except Exception as e:
+            # If possible_answer doesn't exist, use empty ground truth
+            answer_map = {}
+        
+        # Merge question data with ground truth
+        merged_data = []
+        for item in question_dataset:
+            item_id = item.get('id')
+            if item_id in answer_map:
+                item['ground_truth'] = answer_map[item_id]
+            else:
+                item['ground_truth'] = []
+            merged_data.append(item)
+        
+        return merged_data
     
     def _get_field_mapping(self) -> Dict[str, str]:
         """Map standard fields to BFCL fields."""
@@ -149,8 +154,8 @@ class BFCLLoader(BaseDatasetLoader):
                 except:
                     functions = []
         
-        # Get expected answer
-        answer = item.get("answer", [])
+        # Get expected answer (ground_truth from possible_answer/)
+        answer = item.get("ground_truth", [])
         if isinstance(answer, dict):
             answer = [answer]
         

@@ -36,7 +36,7 @@ parsing:
   language: json
 
 evaluation:
-  metric: json_validity
+  metric: function_call_match
   k: 1
   timeout: 5.0
   sandbox: false

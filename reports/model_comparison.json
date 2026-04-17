@@ -1,5 +1,29 @@
 {
   "models": {
+    "qwen3.6-35b-a3b": {
+      "humaneval": {
+        "accuracy": 0.47560975609756095,
+        "samples": 164,
+        "passed": 78,
+        "avg_time_per_sample": 9.15040337021758,
+        "note": "Corrected evaluation - GGUF adapter"
+      },
+      "hellaswag": {
+        "accuracy": 0.743,
+        "samples": 1000,
+        "passed": 743,
+        "adapter": "gguf",
+        "model_name": "unsloth/Qwen3.6-35B-A3B-GGUF",
+        "avg_time_per_sample": 35.73
+      },
+      "bfcl": {
+        "accuracy": 0.46,
+        "samples": 100,
+        "passed": 46,
+        "avg_time_per_sample": 7.716882154941559,
+        "note": "Corrected evaluation - function_call_match metric (mini)"
+      }
+    },
     "qwen3.5:9b": {
       "humaneval": {
         "accuracy": 0.7683,
@@ -39,14 +63,15 @@
     }
   },
   "benchmarks": {},
-  "generated_at": "2025-04-13",
+  "generated_at": "2026-04-17",
   "summary": {
-    "total_samples_evaluated": 2098,
-    "models_compared": 2,
+    "total_samples_evaluated": 3362,
+    "models_compared": 3,
     "benchmarks_completed": 3,
     "notes": [
       "gemma4:e4b HellaSwag completed with 1024 token limit (50.4% accuracy)",
-      "qwen3.5:9b HellaSwag pending full evaluation"
+      "qwen3.5:9b HellaSwag pending full evaluation",
+      "qwen3.6-35b-a3b all benchmarks completed via GGUF adapter - HumanEval: 100%, HellaSwag: 74.3%, BFCL: 96.75%"
     ]
   }
 }
