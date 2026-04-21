@@ -37,6 +37,30 @@ python cli.py \
     --output reports/my_first_eval.json
 ```
 
+## Evaluation Methodology
+
+This harness follows a rigorous, reproducible approach for evaluating Small Language Models (SLMs) with a focus on local inference performance and quantization trade-offs.
+
+### Core Principles
+- **Local-First**: Evaluations are performed locally using GGUF models via `llama-cpp-python` to ensure data privacy and eliminate API latency noise.
+- **Quantization Analysis**: Every model is evaluated across three standard levels: **BF16** (uncompressed), **Q8_0** (8-bit), and **Q4_K_M** (4-bit) to map the Pareto frontier of accuracy vs. efficiency.
+- **Hardware-Locked**: All benchmarks are run on the same hardware (AMD EPYC 32-Core, 125GB RAM) to ensure inference metrics (TTFT, Throughput) are directly comparable.
+
+### Benchmark Specifications
+
+| Benchmark | Task Type | Sample Size | Primary Metric | Description |
+|-----------|-----------|-------------|----------------|-------------|
+| **HumanEval** | Coding | 164 | pass@1 | Python code completion; requires exact functional correctness. |
+| **HellaSwag** | Reasoning | 100* | Accuracy | Commonsense reasoning; predicting the most likely continuation of a scenario. |
+| **BFCL** | Function Calling | 400 | Accuracy | Berkeley Function Calling Leaderboard; generating valid tool calls for complex prompts. |
+
+*\*Note: HellaSwag is evaluated on a normalized 100-sample subset to maintain high-velocity iteration while preserving statistical significance.*
+
+### Inference Metrics
+- **TTFT (Time to First Token)**: Measured in milliseconds. Critical for interactive responsiveness.
+- **Throughput**: Measured in tokens per second (tok/s). Total generation speed.
+- **Peak RAM**: Measured in GB. The maximum resident memory used during a 50-token generation burst.
+
 ## Project Structure
 
 ```

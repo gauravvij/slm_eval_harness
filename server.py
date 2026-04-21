@@ -88,11 +88,16 @@ def process_model_data(comparison_data):
     models = comparison_data.get("models", {})
     processed_models = []
     
-    # Filter to only Qwen 3.6 35B A3B variants for the dashboard
+    # Include both Qwen 3.5 and Qwen 3.6 35B A3B variants for comparison
     target_models = [
+        # Qwen 3.6 variants
         "qwen3.6-35b-a3b",      # Q4_K_M
         "qwen3.6-35b-a3b-q8",   # Q8_0
-        "qwen3.6-35b-a3b-bf16" # BF16
+        "qwen3.6-35b-a3b-bf16", # BF16
+        # Qwen 3.5 variants (older generation)
+        "qwen3.5-35b-a3b",      # Q4_K_M
+        "qwen3.5-35b-a3b-q8",   # Q8_0
+        "qwen3.5-35b-a3b-bf16"  # BF16
     ]
     
     # Define quantization order for ranking
@@ -111,6 +116,11 @@ def process_model_data(comparison_data):
             quantization = "Q8_0"
         elif "q4" in model_name.lower():
             quantization = "Q4_K_M"
+        
+        # Determine model generation (3.5 vs 3.6)
+        generation = "3.6"
+        if "qwen3.5" in model_name.lower():
+            generation = "3.5"
         
         # Extract benchmark scores
         humaneval = benchmarks.get("humaneval", {})
@@ -132,7 +142,7 @@ def process_model_data(comparison_data):
         model_data = {
             "name": model_name,
             "quantization": quantization,
-            "display_name": f"Qwen 3.6 35B A3B ({quantization})",
+            "display_name": f"Qwen {generation} 35B A3B ({quantization})",
             "humaneval": {
                 "accuracy": round(humaneval.get("accuracy", 0) * 100, 2),
                 "samples": humaneval.get("samples", 0),
@@ -151,7 +161,8 @@ def process_model_data(comparison_data):
             "inference": {
                 "ttft_ms": inference.get("ttft_ms", 0),
                 "throughput": inference.get("throughput_tok_s", 0),
-                "model_size_gb": inference.get("model_size_gb", 35)
+                "model_size_gb": inference.get("model_size_gb", 35),
+                "memory_gb": inference.get("peak_ram_gb", 0)
             },
             "avg_accuracy": round(avg_accuracy, 2),
             "rank": quant_order.get(quantization, 99)
