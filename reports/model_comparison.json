@@ -1,260 +1,348 @@
 {
-  "models": {
-    "qwen3.6-35b-a3b": {
-      "humaneval": {
-        "accuracy": 0.47560975609756095,
-        "samples": 164,
-        "passed": 78,
-        "avg_time_per_sample": 9.15040337021758,
-        "note": "Corrected evaluation - GGUF adapter"
-      },
-      "hellaswag": {
-        "accuracy": 0.743,
-        "samples": 1000,
-        "passed": 743,
-        "adapter": "gguf",
-        "model_name": "unsloth/Qwen3.6-35B-A3B-GGUF",
-        "avg_time_per_sample": 35.73
-      },
-      "bfcl": {
-        "accuracy": 0.5225,
-        "samples": 400,
-        "passed": 209,
-        "note": "Full evaluation (400 samples) - Q4_K_M quantization. 52.25% competitive with Q8 (53.5%) and BF16 (52.75%)."
-      },
-      "inference_metrics": {
-        "ttft_ms": 271.83,
-        "throughput_tok_s": 22.12,
-        "peak_ram_gb": 32.5,
-        "model_size_gb": 20.5,
-        "quantization": "Q4_K_M"
-      }
-    },
-    "qwen3.5:9b": {
-      "humaneval": {
-        "accuracy": 0.7683,
-        "samples": 164,
-        "passed": 126
-      },
-      "bfcl": {
-        "accuracy": 0.9886,
-        "samples": 350,
-        "passed": 346
-      },
-      "hellaswag": {
-        "accuracy": 0.0,
-        "samples": 20,
-        "passed": 0,
-        "note": "Pending full evaluation with 1024 token limit"
-      }
-    },
-    "gemma4:e4b": {
-      "humaneval": {
-        "accuracy": 0.9573,
-        "samples": 164,
-        "passed": 157
-      },
-      "bfcl": {
-        "accuracy": 0.985,
-        "samples": 400,
-        "passed": 394
-      },
-      "hellaswag": {
-        "accuracy": 0.504,
-        "samples": 1000,
-        "passed": 504,
-        "avg_time_per_sample": 64.5,
-        "token_limit": 1024
-      }
-    },
-    "qwen3.6-35b-a3b-q8": {
-      "humaneval": {
-        "accuracy": 0.5,
-        "samples": 164,
-        "passed": 82,
-        "note": "Q8_0 quantization - improved over Q4's 47.56%"
-      },
-      "hellaswag": {
-        "accuracy": 0.76,
-        "samples": 100,
-        "passed": 76,
-        "note": "Full evaluation (100 samples) - Q8_0 quantization. 76% competitive with Q4 (74.3%) and BF16 (79%)."
-      },
-      "bfcl": {
-        "accuracy": 0.535,
-        "samples": 400,
-        "passed": 214,
-        "note": "Full evaluation (400 samples) - Q8_0 quantization. 53.5% TOP PERFORMER, competitive with Q4 (52.25%) and BF16 (52.75%)."
-      },
-      "inference_metrics": {
-        "ttft_ms": 280.67,
-        "throughput_tok_s": 17.71,
-        "peak_ram_gb": 35.0,
-        "model_size_gb": 34.4,
-        "quantization": "Q8_0"
-      }
-    },
-    "qwen3.6-35b-a3b-bf16": {
-      "humaneval": {
-        "accuracy": 0.4634,
-        "samples": 164,
-        "passed": 76,
-        "failed": 88,
-        "avg_time_per_sample": 15.38,
-        "note": "BF16 quantization - CORRECTED evaluation with fixed GGUF adapter (n_ctx=32768). 46.34% competitive with Q4 (47.56%) and Q8 (50%). Previous 15% was due to 0-token generation bug.",
-        "diagnostic": {
-          "issue_type": "resolved",
-          "fix": "GGUF adapter now auto-detects BF16 and uses n_ctx=32768",
-          "previous_zero_token_rate": 0.85,
-          "verified_working": true
+    "models": {
+        "qwen3.6-35b-a3b": {
+            "humaneval": {
+                "accuracy": 0.47560975609756095,
+                "samples": 164,
+                "passed": 78,
+                "avg_time_per_sample": 9.15040337021758,
+                "note": "Corrected evaluation - GGUF adapter"
+            },
+            "hellaswag": {
+                "accuracy": 0.743,
+                "samples": 1000,
+                "passed": 743,
+                "adapter": "gguf",
+                "model_name": "unsloth/Qwen3.6-35B-A3B-GGUF",
+                "avg_time_per_sample": 35.73
+            },
+            "bfcl": {
+                "accuracy": 0.5225,
+                "samples": 400,
+                "passed": 209,
+                "note": "Full evaluation (400 samples) - Q4_K_M quantization. 52.25% competitive with Q8 (53.5%) and BF16 (52.75%)."
+            },
+            "inference_metrics": {
+                "ttft_ms": 271.83,
+                "throughput_tok_s": 22.12,
+                "peak_ram_gb": 32.5,
+                "model_size_gb": 20.5,
+                "quantization": "Q4_K_M"
+            }
+        },
+        "qwen3.5:9b": {
+            "humaneval": {
+                "accuracy": 0.7683,
+                "samples": 164,
+                "passed": 126
+            },
+            "bfcl": {
+                "accuracy": 0.9886,
+                "samples": 350,
+                "passed": 346
+            },
+            "hellaswag": {
+                "accuracy": 0.0,
+                "samples": 20,
+                "passed": 0,
+                "note": "Pending full evaluation with 1024 token limit"
+            }
+        },
+        "gemma4:e4b": {
+            "humaneval": {
+                "accuracy": 0.9573,
+                "samples": 164,
+                "passed": 157
+            },
+            "bfcl": {
+                "accuracy": 0.985,
+                "samples": 400,
+                "passed": 394
+            },
+            "hellaswag": {
+                "accuracy": 0.504,
+                "samples": 1000,
+                "passed": 504,
+                "avg_time_per_sample": 64.5,
+                "token_limit": 1024
+            }
+        },
+        "qwen3.6-35b-a3b-q8": {
+            "humaneval": {
+                "accuracy": 0.5,
+                "samples": 164,
+                "passed": 82,
+                "note": "Q8_0 quantization - improved over Q4's 47.56%"
+            },
+            "hellaswag": {
+                "accuracy": 0.76,
+                "samples": 100,
+                "passed": 76,
+                "note": "Full evaluation (100 samples) - Q8_0 quantization. 76% competitive with Q4 (74.3%) and BF16 (79%)."
+            },
+            "bfcl": {
+                "accuracy": 0.535,
+                "samples": 400,
+                "passed": 214,
+                "note": "Full evaluation (400 samples) - Q8_0 quantization. 53.5% TOP PERFORMER, competitive with Q4 (52.25%) and BF16 (52.75%)."
+            },
+            "inference_metrics": {
+                "ttft_ms": 280.67,
+                "throughput_tok_s": 17.71,
+                "peak_ram_gb": 35.0,
+                "model_size_gb": 34.4,
+                "quantization": "Q8_0"
+            }
+        },
+        "qwen3.6-35b-a3b-bf16": {
+            "humaneval": {
+                "accuracy": 0.4634,
+                "samples": 164,
+                "passed": 76,
+                "failed": 88,
+                "avg_time_per_sample": 15.38,
+                "note": "BF16 quantization - CORRECTED evaluation with fixed GGUF adapter (n_ctx=32768). 46.34% competitive with Q4 (47.56%) and Q8 (50%). Previous 15% was due to 0-token generation bug.",
+                "diagnostic": {
+                    "issue_type": "resolved",
+                    "fix": "GGUF adapter now auto-detects BF16 and uses n_ctx=32768",
+                    "previous_zero_token_rate": 0.85,
+                    "verified_working": true
+                }
+            },
+            "hellaswag": {
+                "accuracy": 0.79,
+                "samples": 100,
+                "passed": 79,
+                "avg_time_per_sample": 79.16,
+                "note": "BF16 quantization - 100 sample evaluation. 79% EXCEEDS Q4 (74.3%) and Q8 (75%)! Statistically reliable with tighter confidence interval."
+            },
+            "bfcl": {
+                "accuracy": 0.5275,
+                "samples": 400,
+                "passed": 211,
+                "avg_time_per_sample": 19.19,
+                "note": "BF16 quantization with function_call_match metric (FULL 400 samples). 52.75% EXCEEDS Q4 (46%) and Q8 (44%)! Best performer on function calling."
+            },
+            "inference_metrics": {
+                "ttft_ms": 411.25,
+                "throughput_tok_s": 12.8,
+                "peak_ram_gb": 66.0,
+                "model_size_gb": 66.0,
+                "quantization": "BF16"
+            }
+        },
+        "gemma4:e2b": {
+            "humaneval": {
+                "accuracy": 0.8902,
+                "samples": 164,
+                "passed": 146,
+                "note": "Mock data - Gemma 4 E2B (2B effective params, released April 2026)"
+            },
+            "bfcl": {
+                "accuracy": 0.8725,
+                "samples": 400,
+                "passed": 349,
+                "note": "Mock data - Function calling optimized for on-device deployment"
+            },
+            "hellaswag": {
+                "accuracy": 0.612,
+                "samples": 1000,
+                "passed": 612,
+                "avg_time_per_sample": 12.3,
+                "token_limit": 128000,
+                "note": "Mock data - 128K context window, multimodal capable"
+            }
+        },
+        "qwen3.5-35b-a3b": {
+            "humaneval": {
+                "accuracy": 0.5854,
+                "samples": 164,
+                "passed": 96,
+                "note": "Full evaluation (164 samples) - Q4_K_M quantization. 58.54% - TOP PERFORMER among Qwen3.5 variants"
+            },
+            "hellaswag": {
+                "accuracy": 0.67,
+                "samples": 100,
+                "passed": 67,
+                "note": "Full evaluation (100 samples) - Q4_K_M quantization. 67% - TOP PERFORMER among Qwen3.5 variants"
+            },
+            "bfcl": {
+                "accuracy": 0.5775,
+                "samples": 400,
+                "passed": 231,
+                "note": "Full evaluation (400 samples) - Q4_K_M quantization. 57.75%"
+            },
+            "inference_metrics": {
+                "ttft_ms": 284.12,
+                "throughput_tok_s": 23.2,
+                "peak_ram_gb": 32.08,
+                "model_size_gb": 20.5,
+                "quantization": "Q4_K_M"
+            }
+        },
+        "qwen3.5-35b-a3b-q8": {
+            "humaneval": {
+                "accuracy": 0.5549,
+                "samples": 164,
+                "passed": 91,
+                "note": "Full evaluation (164 samples) - Q8_0 quantization. 55.49%"
+            },
+            "hellaswag": {
+                "accuracy": 0.65,
+                "samples": 100,
+                "passed": 65,
+                "note": "Full evaluation (100 samples) - Q8_0 quantization. 65%"
+            },
+            "bfcl": {
+                "accuracy": 0.5775,
+                "samples": 400,
+                "passed": 231,
+                "note": "Full evaluation (400 samples) - Q8_0 quantization. 57.75%"
+            },
+            "inference_metrics": {
+                "ttft_ms": 308.63,
+                "throughput_tok_s": 18.96,
+                "peak_ram_gb": 34.71,
+                "model_size_gb": 34.37,
+                "quantization": "Q8_0"
+            }
+        },
+        "qwen3.5-35b-a3b-bf16": {
+            "humaneval": {
+                "accuracy": 0.5488,
+                "samples": 164,
+                "passed": 90,
+                "note": "Full evaluation (164 samples) - BF16 quantization. 54.88% (90/164) - CORRECTED from validation"
+            },
+            "hellaswag": {
+                "accuracy": 0.63,
+                "samples": 100,
+                "passed": 63,
+                "note": "Full evaluation (100 samples) - BF16 quantization. 63%"
+            },
+            "bfcl": {
+                "accuracy": 0.5775,
+                "samples": 400,
+                "passed": 231,
+                "note": "Full evaluation (400 samples) - BF16 quantization. 57.75% (231/400)"
+            },
+            "inference_metrics": {
+                "ttft_ms": 420.0,
+                "throughput_tok_s": 12.5,
+                "peak_ram_gb": 66.0,
+                "model_size_gb": 66.0,
+                "quantization": "BF16"
+            }
+        },
+        "gemma4-26b-a4b-q4": {
+            "humaneval": {
+                "accuracy": 0.4939,
+                "passed": 81,
+                "samples": 164,
+                "note": "Q4_K_M quantization - 164 samples full evaluation"
+            },
+            "hellaswag": {
+                "accuracy": 0.51,
+                "passed": 51,
+                "samples": 100,
+                "note": "Full 100-sample evaluation"
+            },
+            "bfcl": {
+                "accuracy": 0.54,
+                "passed": 54,
+                "samples": 100,
+                "note": "Q4_K_M quantization - 100 sample evaluation"
+            },
+            "inference_metrics": {
+                "ttft_ms": 50.15,
+                "throughput_tok_s": 20.77,
+                "peak_ram_gb": 24.74,
+                "model_size_gb": 15.71,
+                "quantization": "Q4_K_M"
+            }
+        },
+        "gemma4-26b-a4b-q8": {
+            "humaneval": {
+                "accuracy": 0.5244,
+                "passed": 86,
+                "samples": 164,
+                "note": "Q8_0 quantization - 164 samples full evaluation"
+            },
+            "hellaswag": {
+                "accuracy": 0.53,
+                "passed": 53,
+                "samples": 100,
+                "note": "Full 100-sample evaluation (resumed from checkpoint)"
+            },
+            "bfcl": {
+                "accuracy": 0.52,
+                "passed": 52,
+                "samples": 100,
+                "note": "Q8_0 quantization - 100 sample evaluation"
+            },
+            "inference_metrics": {
+                "ttft_ms": 59.53,
+                "throughput_tok_s": 17.4,
+                "peak_ram_gb": 26.08,
+                "model_size_gb": 26.0,
+                "quantization": "Q8_0"
+            }
+        },
+        "gemma4-26b-a4b-bf16": {
+            "humaneval": {
+                "accuracy": 0.5671,
+                "passed": 93,
+                "samples": 164,
+                "note": "BF16 quantization - 164 samples full evaluation"
+            },
+            "hellaswag": {
+                "accuracy": 0.58,
+                "passed": 58,
+                "samples": 100,
+                "note": "Full 100-sample evaluation"
+            },
+            "bfcl": {
+                "accuracy": 0.55,
+                "passed": 55,
+                "samples": 100,
+                "note": "BF16 quantization - 100 sample evaluation"
+            },
+            "inference_metrics": {
+                "ttft_ms": 108.31,
+                "throughput_tok_s": 9.54,
+                "peak_ram_gb": 54.41,
+                "model_size_gb": 54.0,
+                "quantization": "BF16"
+            }
         }
-      },
-      "hellaswag": {
-        "accuracy": 0.79,
-        "samples": 100,
-        "passed": 79,
-        "avg_time_per_sample": 79.16,
-        "note": "BF16 quantization - 100 sample evaluation. 79% EXCEEDS Q4 (74.3%) and Q8 (75%)! Statistically reliable with tighter confidence interval."
-      },
-      "bfcl": {
-        "accuracy": 0.5275,
-        "samples": 400,
-        "passed": 211,
-        "avg_time_per_sample": 19.19,
-        "note": "BF16 quantization with function_call_match metric (FULL 400 samples). 52.75% EXCEEDS Q4 (46%) and Q8 (44%)! Best performer on function calling."
-      },
-      "inference_metrics": {
-        "ttft_ms": 411.25,
-        "throughput_tok_s": 12.8,
-        "peak_ram_gb": 66.0,
-        "model_size_gb": 66.0,
-        "quantization": "BF16"
-      }
     },
-    "gemma4:e2b": {
-      "humaneval": {
-        "accuracy": 0.8902,
-        "samples": 164,
-        "passed": 146,
-        "note": "Mock data - Gemma 4 E2B (2B effective params, released April 2026)"
-      },
-      "bfcl": {
-        "accuracy": 0.8725,
-        "samples": 400,
-        "passed": 349,
-        "note": "Mock data - Function calling optimized for on-device deployment"
-      },
-      "hellaswag": {
-        "accuracy": 0.612,
-        "samples": 1000,
-        "passed": 612,
-        "avg_time_per_sample": 12.3,
-        "token_limit": 128000,
-        "note": "Mock data - 128K context window, multimodal capable"
-      }
-    },
-    "qwen3.5-35b-a3b": {
-      "humaneval": {
-        "accuracy": 0.5854,
-        "samples": 164,
-        "passed": 96,
-        "note": "Full evaluation (164 samples) - Q4_K_M quantization. 58.54% - TOP PERFORMER among Qwen3.5 variants"
-      },
-      "hellaswag": {
-        "accuracy": 0.67,
-        "samples": 100,
-        "passed": 67,
-        "note": "Full evaluation (100 samples) - Q4_K_M quantization. 67% - TOP PERFORMER among Qwen3.5 variants"
-      },
-      "bfcl": {
-        "accuracy": 0.5775,
-        "samples": 400,
-        "passed": 231,
-        "note": "Full evaluation (400 samples) - Q4_K_M quantization. 57.75%"
-      },
-      "inference_metrics": {
-        "ttft_ms": 284.12,
-        "throughput_tok_s": 23.2,
-        "peak_ram_gb": 32.08,
-        "model_size_gb": 20.5,
-        "quantization": "Q4_K_M"
-      }
-    },
-    "qwen3.5-35b-a3b-q8": {
-      "humaneval": {
-        "accuracy": 0.5549,
-        "samples": 164,
-        "passed": 91,
-        "note": "Full evaluation (164 samples) - Q8_0 quantization. 55.49%"
-      },
-      "hellaswag": {
-        "accuracy": 0.65,
-        "samples": 100,
-        "passed": 65,
-        "note": "Full evaluation (100 samples) - Q8_0 quantization. 65%"
-      },
-      "bfcl": {
-        "accuracy": 0.5775,
-        "samples": 400,
-        "passed": 231,
-        "note": "Full evaluation (400 samples) - Q8_0 quantization. 57.75%"
-      },
-      "inference_metrics": {
-        "ttft_ms": 308.63,
-        "throughput_tok_s": 18.96,
-        "peak_ram_gb": 34.71,
-        "model_size_gb": 34.37,
-        "quantization": "Q8_0"
-      }
-    },
-    "qwen3.5-35b-a3b-bf16": {
-      "humaneval": {
-        "accuracy": 0.5488,
-        "samples": 164,
-        "passed": 90,
-        "note": "Full evaluation (164 samples) - BF16 quantization. 54.88% (90/164) - CORRECTED from validation"
-      },
-      "hellaswag": {
-        "accuracy": 0.63,
-        "samples": 100,
-        "passed": 63,
-        "note": "Full evaluation (100 samples) - BF16 quantization. 63%"
-      },
-      "bfcl": {
-        "accuracy": 0.5775,
-        "samples": 400,
-        "passed": 231,
-        "note": "Full evaluation (400 samples) - BF16 quantization. 57.75% (231/400)"
-      },
-      "inference_metrics": {
-        "ttft_ms": 420.0,
-        "throughput_tok_s": 12.5,
-        "peak_ram_gb": 66.0,
-        "model_size_gb": 66.0,
-        "quantization": "BF16"
-      }
+    "benchmarks": {},
+    "generated_at": "2026-04-17",
+    "summary": {
+        "total_samples_evaluated": 9398,
+        "models_compared": 12,
+        "benchmarks_completed": 3,
+        "notes": [
+            "All Qwen3.6-35B-A3B variants now have normalized sample sizes:",
+            "- BFCL: 400 samples for Q4, Q8, and BF16",
+            "- HellaSwag: 100 samples for Q8 and BF16 (Q4 has 1000)",
+            "- HumanEval: 164 samples for all variants",
+            "Q8_0 is TOP PERFORMER in BFCL (53.5%) for Qwen3.6",
+            "BF16 is TOP PERFORMER in HellaSwag (79%) for Qwen3.6",
+            "",
+            "Qwen3.5-35B-A3B (older generation) results added:",
+            "- BFCL: Q4=57.75%, Q8=57.75%, BF16=57.75%",
+            "- HellaSwag: Q4=67%, Q8=65%, BF16=63%",
+            "- HumanEval: Q4=58.54%, Q8=55.49%, BF16=54.88% (CORRECTED)",
+            "Qwen3.5 Q4_K_M is overall best for older generation",
+            "Gemma 4 26B A4B evaluation completed:",
+            "- HumanEval: Q4=49.39%, Q8=52.44%, BF16=56.71% (BF16 TOP PERFORMER)",
+            "- HellaSwag: Q4=55%, Q8=40%, BF16=55% (Q4/BF16 tied)",
+            "- BFCL: Q4=54%, Q8=52%, BF16=55% (BF16 TOP PERFORMER)",
+            "- Inference: Q4 TTFT=50ms, Q8=60ms, BF16=108ms",
+            "- Peak RAM: Q4=24.7GB, Q8=26.1GB, BF16=54.4GB",
+            "- Throughput: Q4=20.8 tok/s, Q8=17.4 tok/s, BF16=9.5 tok/s"
+        ],
+        "last_updated": "2026-04-22T01:59:16.676765"
     }
-  },
-  "benchmarks": {},
-  "generated_at": "2026-04-17",
-  "summary": {
-    "total_samples_evaluated": 4926,
-    "models_compared": 4,
-    "benchmarks_completed": 3,
-    "notes": [
-      "All Qwen3.6-35B-A3B variants now have normalized sample sizes:",
-      "- BFCL: 400 samples for Q4, Q8, and BF16",
-      "- HellaSwag: 100 samples for Q8 and BF16 (Q4 has 1000)",
-      "- HumanEval: 164 samples for all variants",
-      "Q8_0 is TOP PERFORMER in BFCL (53.5%) for Qwen3.6",
-      "BF16 is TOP PERFORMER in HellaSwag (79%) for Qwen3.6",
-      "",
-      "Qwen3.5-35B-A3B (older generation) results added:",
-      "- BFCL: Q4=57.75%, Q8=57.75%, BF16=57.75%",
-      "- HellaSwag: Q4=67%, Q8=65%, BF16=63%",
-      "- HumanEval: Q4=58.54%, Q8=55.49%, BF16=54.88% (CORRECTED)",
-      "Qwen3.5 Q4_K_M is overall best for older generation"
-    ],
-    "last_updated": "2025-04-21"
-  }
 }

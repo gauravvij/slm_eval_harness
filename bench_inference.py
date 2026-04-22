@@ -278,15 +278,18 @@ def main():
     # Define models to benchmark
     # Format: (model_key, model_path, display_name, n_ctx_override)
     models_to_benchmark = [
-        # Qwen 3.6 Q4 - need RAM data
-        ("qwen3.6-35b-a3b", "/root/.cache/huggingface/hub/models--unsloth--Qwen3.6-35B-A3B-GGUF/snapshots/9280dd353ab587157920d5bd391ada414d84e552/Qwen3.6-35B-A3B-UD-Q4_K_M.gguf", 
-         "Qwen3.6-35B-A3B-Q4_K_M", 4096),
+        # Gemma 4 26B A4B - Q4_K_M
+        ("gemma4-26b-a4b-q4", "/root/slm_eval_harness/models/gemma-4-26B-A4B-it-UD-Q4_K_M.gguf", 
+         "Gemma4-26B-A4B-Q4_K_M", 4096),
+        # Gemma 4 26B A4B - Q8_0
+        ("gemma4-26b-a4b-q8", "/root/slm_eval_harness/models/gemma-4-26B-A4B-it-Q8_0.gguf", 
+         "Gemma4-26B-A4B-Q8_0", 4096),
     ]
     
-    # Check for BF16 models (split files)
+    # BF16 models (split files - need special handling)
     bf16_models = [
-        ("qwen3.5-35b-a3b-bf16", "/root/slm_eval_harness/models/BF16", 
-         "Qwen3.5-35B-A3B-BF16"),
+        ("gemma4-26b-a4b-bf16", "/root/slm_eval_harness/models/BF16/gemma-4-26B-A4B-it-BF16-00001-of-00002.gguf", 
+         "Gemma4-26B-A4B-BF16"),
     ]
     
     print("="*70)
@@ -299,7 +302,7 @@ def main():
     
     all_results = {}
     
-    # Benchmark standard GGUF models
+    # Benchmark standard GGUF models (Q4_K_M, Q8_0)
     for model_key, model_path, display_name, n_ctx in models_to_benchmark:
         if os.path.exists(model_path):
             results = measure_inference_metrics(
@@ -308,6 +311,29 @@ def main():
                 max_tokens=50,
                 temperature=0.7,
                 n_ctx=n_ctx,
+                warmup_runs=1,
+                measurement_runs=5,
+            )
+            if results:
+                print_summary(results)
+                all_results[model_key] = results
+                
+                # Save individual result
+                output_file = f"/root/slm_eval_harness/reports/inference_metrics_{model_key}.json"
+                save_results(results, output_file)
+        else:
+            print(f"\nSkipping {display_name}: Model not found at {model_path}")
+    
+    # Benchmark BF16 models (split GGUF files)
+    for model_key, model_path, display_name in bf16_models:
+        if os.path.exists(model_path):
+            # BF16 needs larger context
+            results = measure_inference_metrics(
+                model_path=model_path,
+                model_name=display_name,
+                max_tokens=50,
+                temperature=0.7,
+                n_ctx=32768,  # BF16 requires larger context
                 warmup_runs=1,
                 measurement_runs=5,
             )

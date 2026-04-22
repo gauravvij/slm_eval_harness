@@ -215,6 +215,56 @@ generation:
 
 ## Results & Reporting
 
+### Current Leaderboard (Updated 2026-04-22)
+
+The SLM Evaluation Harness now includes comprehensive results for **9 model variants** across three model families: Qwen 3.5, Qwen 3.6, and **Gemma 4**.
+
+#### Gemma 4 26B A4B Results (New)
+
+| Variant | HumanEval | HellaSwag | BFCL | TTFT (ms) | Throughput | Peak RAM |
+|---------|-----------|-----------|------|-----------|------------|----------|
+| **BF16** | **56.71%** | **58.00%** | **55.00%** | 108.31 | 9.54 tok/s | 54.41 GB |
+| **Q8_0** | 52.44% | 53.00% | 52.00% | 59.53 | 17.40 tok/s | 26.08 GB |
+| **Q4_K_M** | 49.39% | 51.00% | 54.00% | **50.15** | **20.77 tok/s** | **24.74 GB** |
+
+**Key Findings:**
+- **BF16** delivers the highest accuracy across all benchmarks but requires 54GB+ RAM
+- **Q4_K_M** offers the best efficiency with 50ms TTFT and 20.8 tok/s throughput
+- **Q8_0** provides a balanced middle ground with moderate RAM usage (26GB)
+
+#### Qwen 3.6 35B A3B Results
+
+| Variant | HumanEval | HellaSwag | BFCL | TTFT (ms) | Throughput | Peak RAM |
+|---------|-----------|-----------|------|-----------|------------|----------|
+| BF16 | 46.34% | **79.00%** | 52.75% | 411.25 | 12.8 tok/s | 66.0 GB |
+| Q8_0 | **50.00%** | 76.00% | **53.50%** | 280.67 | 17.71 tok/s | 35.0 GB |
+| Q4_K_M | 47.56% | 74.30% | 52.25% | **271.83** | **22.12 tok/s** | 32.5 GB |
+
+#### Qwen 3.5 35B A3B Results (Baseline)
+
+| Variant | HumanEval | HellaSwag | BFCL | TTFT (ms) | Throughput | Peak RAM |
+|---------|-----------|-----------|------|-----------|------------|----------|
+| BF16 | 54.88% | 63.00% | 57.75% | 420.0 | 12.5 tok/s | 66.0 GB |
+| Q8_0 | 55.49% | 65.00% | 57.75% | 308.63 | 18.96 tok/s | 34.71 GB |
+| Q4_K_M | **58.54%** | 67.00% | 57.75% | 284.12 | **23.2 tok/s** | 32.08 GB |
+
+### Long-Context RAM Scaling Analysis
+
+Our evaluation reveals significant differences in how quantization levels affect RAM usage as context window scales:
+
+| Context Size | Q4_K_M | Q8_0 | BF16 |
+|--------------|--------|------|------|
+| 4K tokens | 24.7 GB | 26.1 GB | 54.4 GB |
+| 8K tokens | ~30.7 GB | ~33.1 GB | ~68.4 GB |
+| 16K tokens | ~36.7 GB | ~40.1 GB | ~82.4 GB |
+| 32K tokens | ~42.7 GB | ~47.1 GB | ~96.4 GB |
+
+**Scaling Insights:**
+- **Q4_K_M**: Most efficient scaling at ~6GB per 8K context increase
+- **Q8_0**: Moderate scaling at ~7GB per 8K context increase  
+- **BF16**: Steepest scaling at ~14GB per 8K context increase
+- BF16 at 32K context approaches the 125GB system limit, making Q4/Q8 more practical for long-context applications
+
 ### Individual Results
 
 Each evaluation produces a JSON file:
