@@ -5,11 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLM Leaderboard | Small Language Model Evaluation</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS via CDN (required for custom config to work) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/chart.min.js"></script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,11 +89,14 @@
             background: #6366f1;
         }
         
-        /* Glass effect */
+        /* Glass effect - adapts to light/dark mode */
         .glass {
-            background: rgba(22, 22, 32, 0.8);
+            background: rgba(248, 250, 252, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass {
+            background: rgba(22, 22, 32, 0.85);
         }
         
         /* Gradient text */
@@ -150,30 +151,30 @@
         }
     </style>
 </head>
-<body class="bg-dark-bg text-gray-100 font-sans min-h-screen">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans min-h-screen pt-24">
     <!-- Background gradient -->
-    <div class="fixed inset-0 bg-gradient-to-br from-dark-bg via-[#0f0f1a] to-dark-bg pointer-events-none"></div>
+    <div class="fixed inset-0 bg-gradient-to-br from-slate-100 via-slate-200 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 pointer-events-none"></div>
     
     <!-- Header -->
-    <header class="relative z-10 border-b border-dark-border glass sticky top-0">
+    <header class="fixed top-0 left-0 right-0 z-[100] border-b border-slate-200 dark:border-slate-700 glass">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-accent-purple flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-6 h-6 text-slate-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
                     <div>
                         <h1 class="text-2xl font-bold gradient-text">SLM Leaderboard</h1>
-                        <p class="text-sm text-gray-400">Small Language Model Evaluation Dashboard</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Small Language Model Evaluation Dashboard</p>
                     </div>
                 </div>
                 
                 <div class="flex items-center gap-4">
                     <!-- Hardware badges -->
                     <div class="hidden md:flex items-center gap-2">
-                        <span class="px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-300 text-xs font-mono">
+                        <span class="px-3 py-1 rounded-full bg-primary-500/10 border border-primary-500/30 text-primary-600 dark:text-primary-300 text-xs font-mono">
                             <span class="inline-block w-2 h-2 rounded-full bg-accent-emerald mr-1 animate-pulse"></span>
                             AMD EPYC 32-Core
                         </span>
@@ -191,8 +192,8 @@
                     </a>
                     
                     <!-- Theme toggle -->
-                    <button id="themeToggle" class="p-2 rounded-lg bg-dark-surface border border-dark-border hover:border-primary-500/50 transition-all">
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button id="themeToggle" class="p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-primary-500/50 transition-all">
+                        <svg class="w-5 h-5 text-slate-600 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
                         </svg>
                     </button>
@@ -206,7 +207,7 @@
         
         <!-- Navigation tabs -->
         <div class="mb-8">
-            <div class="flex gap-2 p-1 bg-dark-surface rounded-xl border border-dark-border">
+            <div class="flex gap-2 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
                 <button class="tab-btn active flex-1 py-3 px-4 rounded-lg text-sm font-medium transition-all" data-tab="leaderboard">
                     <span class="flex items-center justify-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,7 +216,7 @@
                         Leaderboard
                     </span>
                 </button>
-                <button class="tab-btn flex-1 py-3 px-4 rounded-lg text-sm font-medium text-gray-400 hover:text-white transition-all" data-tab="comparison">
+                <button class="tab-btn flex-1 py-3 px-4 rounded-lg text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all" data-tab="comparison">
                     <span class="flex items-center justify-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2v8a2 2 0 01-2 2H9zm6-6V7m0 4a2 2 0 012-2h2a2 2 0 012 2v8a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
@@ -223,7 +224,7 @@
                         Quantization Comparison
                     </span>
                 </button>
-                <button class="tab-btn flex-1 py-3 px-4 rounded-lg text-sm font-medium text-gray-400 hover:text-white transition-all" data-tab="system">
+                <button class="tab-btn flex-1 py-3 px-4 rounded-lg text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 transition-all" data-tab="system">
                     <span class="flex items-center justify-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/>
@@ -238,32 +239,32 @@
         <div id="leaderboard" class="tab-content active">
             <!-- Summary cards -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6 hover:border-primary-500/50 transition-all hover-glow">
-                    <div class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">Best Overall</div>
-                    <div class="text-2xl font-bold text-white font-mono">BF16</div>
-                    <div class="text-accent-emerald text-sm mt-1">79% HellaSwag</div>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 hover:border-primary-500/50 transition-all hover-glow">
+                    <div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">Best Overall</div>
+                    <div class="text-base font-bold text-slate-900 dark:text-white font-mono leading-tight" id="bestOverallName">—</div>
+                    <div class="text-emerald-500 text-sm mt-1" id="bestOverallScore">—</div>
                 </div>
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6 hover:border-primary-500/50 transition-all">
-                    <div class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">Best Throughput</div>
-                    <div class="text-2xl font-bold text-white font-mono">Q4_K_M</div>
-                    <div class="text-accent-emerald text-sm mt-1">22.12 tok/s</div>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 hover:border-primary-500/50 transition-all">
+                    <div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">Best Throughput</div>
+                    <div class="text-base font-bold text-slate-900 dark:text-white font-mono leading-tight" id="bestThroughputName">—</div>
+                    <div class="text-emerald-500 text-sm mt-1" id="bestThroughputScore">—</div>
                 </div>
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6 hover:border-primary-500/50 transition-all">
-                    <div class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">Best Balance</div>
-                    <div class="text-2xl font-bold text-white font-mono">Q8_0</div>
-                    <div class="text-primary-400 text-sm mt-1">50% HumanEval</div>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 hover:border-primary-500/50 transition-all">
+                    <div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">Best HumanEval</div>
+                    <div class="text-base font-bold text-slate-900 dark:text-white font-mono leading-tight" id="bestHumanEvalName">—</div>
+                    <div class="text-indigo-500 dark:text-indigo-400 text-sm mt-1" id="bestHumanEvalScore">—</div>
                 </div>
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6 hover:border-primary-500/50 transition-all">
-                    <div class="text-gray-400 text-xs font-medium uppercase tracking-wider mb-2">Models Evaluated</div>
-                    <div class="text-2xl font-bold text-white font-mono" id="modelCount">9</div>
-                    <div class="text-gray-500 text-sm mt-1">Qwen 3.5/3.6 & Gemma 4</div>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6 hover:border-primary-500/50 transition-all">
+                    <div class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">Models Evaluated</div>
+                    <div class="text-2xl font-bold text-slate-900 dark:text-white font-mono" id="modelCount">9</div>
+                    <div class="text-slate-400 dark:text-slate-500 text-sm mt-1">Qwen 3.5/3.6 & Gemma 4</div>
                 </div>
             </div>
 
             <!-- Leaderboard table -->
-            <div class="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
-                <div class="px-6 py-4 border-b border-dark-border">
-                    <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+            <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+                    <h2 class="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
                         <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                         </svg>
@@ -273,7 +274,7 @@
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
-                            <tr class="bg-dark-surface text-gray-400 text-xs uppercase tracking-wider">
+                            <tr class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider">
                                 <th class="px-6 py-4 text-left font-medium">Rank</th>
                                 <th class="px-6 py-4 text-left font-medium">Model</th>
                                 <th class="px-6 py-4 text-center font-medium">HumanEval</th>
@@ -284,7 +285,7 @@
                                 <th class="px-6 py-4 text-center font-medium">Memory</th>
                             </tr>
                         </thead>
-                        <tbody id="leaderboardBody" class="divide-y divide-dark-border">
+                        <tbody id="leaderboardBody" class="divide-y divide-slate-200 dark:divide-slate-700">
                             <!-- Populated by JS -->
                         </tbody>
                     </table>
@@ -292,25 +293,25 @@
             </div>
 
             <!-- Accuracy chart -->
-            <div class="mt-8 bg-dark-card border border-dark-border rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-white mb-4">Benchmark Accuracy Comparison</h3>
+            <div class="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Benchmark Accuracy Comparison</h3>
                 <div class="chart-container">
                     <canvas id="accuracyChart"></canvas>
                 </div>
             </div>
 
             <!-- RAM vs Accuracy chart -->
-            <div class="mt-8 bg-dark-card border border-dark-border rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-white mb-4">RAM Usage vs Accuracy</h3>
+            <div class="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">RAM Usage vs Accuracy</h3>
                 <div class="chart-container">
                     <canvas id="ramAccuracyChart"></canvas>
                 </div>
-                <p class="text-sm text-gray-500 mt-4 text-center">Peak RAM usage during inference vs average benchmark accuracy</p>
+                <p class="text-sm text-slate-400 dark:text-slate-500 mt-4 text-center">Peak RAM usage during inference vs average benchmark accuracy</p>
             </div>
 
             <!-- Long-Context RAM Scaling Chart -->
-            <div class="mt-8 bg-dark-card border border-dark-border rounded-xl p-6">
-                <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+            <div class="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                     <svg class="w-5 h-5 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                     </svg>
@@ -319,17 +320,17 @@
                 <div class="chart-container">
                     <canvas id="contextScalingChart"></canvas>
                 </div>
-                <p class="text-sm text-gray-500 mt-4 text-center">Peak RAM usage as context window scales from 4K to 32K tokens</p>
-                <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-gray-400">
-                    <div class="p-3 bg-dark-surface rounded-lg border border-dark-border">
+                <p class="text-sm text-slate-400 dark:text-slate-500 mt-4 text-center">Peak RAM usage as context window scales from 4K to 32K tokens</p>
+                <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-500 dark:text-slate-400">
+                    <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
                         <div class="text-accent-emerald font-bold mb-1">Q4_K_M</div>
                         <div>Most efficient scaling - ~6GB per 8K context increase</div>
                     </div>
-                    <div class="p-3 bg-dark-surface rounded-lg border border-dark-border">
-                        <div class="text-primary-400 font-bold mb-1">Q8_0</div>
+                    <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                        <div class="text-primary-500 dark:text-primary-400 font-bold mb-1">Q8_0</div>
                         <div>Moderate scaling - ~7GB per 8K context increase</div>
                     </div>
-                    <div class="p-3 bg-dark-surface rounded-lg border border-dark-border">
+                    <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
                         <div class="text-accent-amber font-bold mb-1">BF16</div>
                         <div>Steepest scaling - ~14GB per 8K context increase</div>
                     </div>
@@ -338,55 +339,55 @@
 
             <!-- Benchmarking Approach Section -->
             <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-2 bg-dark-card border border-dark-border rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <div class="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                         <svg class="w-5 h-5 text-accent-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                         </svg>
                         Benchmarking Methodology
                     </h3>
-                    <div class="space-y-4 text-sm text-gray-400 leading-relaxed">
+                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                         <p>
-                            Our evaluation framework uses a <span class="text-white font-medium">Local-First</span> approach. All models are executed as GGUF binaries via <span class="font-mono text-primary-400">llama-cpp-python</span> on a dedicated 32-core AMD EPYC node. This eliminates network variability and provides a realistic view of SLM performance on commodity hardware.
+                            Our evaluation framework uses a <span class="text-slate-900 dark:text-white font-medium">Local-First</span> approach. All models are executed as GGUF binaries via <span class="font-mono text-primary-600 dark:text-primary-400">llama-cpp-python</span> on a dedicated 32-core AMD EPYC node. This eliminates network variability and provides a realistic view of SLM performance on commodity hardware.
                         </p>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                            <div class="p-3 bg-dark-surface rounded-lg border border-dark-border">
-                                <div class="text-white font-bold mb-1">HumanEval</div>
+                            <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                                <div class="text-slate-900 dark:text-white font-bold mb-1">HumanEval</div>
                                 <div class="text-xs">164 Samples</div>
-                                <div class="text-xs mt-1 text-gray-500">Python code generation with functional verification.</div>
+                                <div class="text-xs mt-1 text-slate-400 dark:text-slate-500">Python code generation with functional verification.</div>
                             </div>
-                            <div class="p-3 bg-dark-surface rounded-lg border border-dark-border">
-                                <div class="text-white font-bold mb-1">HellaSwag</div>
+                            <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                                <div class="text-slate-900 dark:text-white font-bold mb-1">HellaSwag</div>
                                 <div class="text-xs">100 Samples</div>
-                                <div class="text-xs mt-1 text-gray-500">Commonsense reasoning subset for rapid iteration.</div>
+                                <div class="text-xs mt-1 text-slate-400 dark:text-slate-500">Commonsense reasoning subset for rapid iteration.</div>
                             </div>
-                            <div class="p-3 bg-dark-surface rounded-lg border border-dark-border">
-                                <div class="text-white font-bold mb-1">BFCL</div>
+                            <div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                                <div class="text-slate-900 dark:text-white font-bold mb-1">BFCL</div>
                                 <div class="text-xs">400 Samples</div>
-                                <div class="text-xs mt-1 text-gray-500">Berkeley Function Calling accuracy validation.</div>
+                                <div class="text-xs mt-1 text-slate-400 dark:text-slate-500">Berkeley Function Calling accuracy validation.</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                         <svg class="w-5 h-5 text-accent-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         How to Read Metrics
                     </h3>
-                    <ul class="space-y-3 text-xs text-gray-400">
+                    <ul class="space-y-3 text-xs text-slate-500 dark:text-slate-400">
                         <li>
-                            <strong class="text-white block mb-1">TTFT (Time to First Token)</strong>
+                            <strong class="text-slate-900 dark:text-white block mb-1">TTFT (Time to First Token)</strong>
                             Measures responsiveness. Lower is better for chat/interactive apps.
                         </li>
                         <li>
-                            <strong class="text-white block mb-1">Throughput (tok/s)</strong>
+                            <strong class="text-slate-900 dark:text-white block mb-1">Throughput (tok/s)</strong>
                             Measures raw generation speed. Higher is better for batch processing.
                         </li>
                         <li>
-                            <strong class="text-white block mb-1">Pareto Frontier</strong>
+                            <strong class="text-slate-900 dark:text-white block mb-1">Pareto Frontier</strong>
                             The ideal balance between RAM usage and Accuracy. Models closer to the top-left of the scatter plot are most efficient.
                         </li>
                     </ul>
@@ -398,15 +399,15 @@
         <div id="comparison" class="tab-content">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Side-by-side metrics -->
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-4">Inference Metrics</h3>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Inference Metrics</h3>
                     <div class="chart-container">
                         <canvas id="inferenceChart"></canvas>
                     </div>
                 </div>
                 
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-4">Model Size vs Accuracy</h3>
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Model Size vs Accuracy</h3>
                     <div class="chart-container">
                         <canvas id="sizeAccuracyChart"></canvas>
                     </div>
@@ -414,21 +415,21 @@
             </div>
 
             <!-- Detailed comparison table -->
-            <div class="mt-6 bg-dark-card border border-dark-border rounded-xl overflow-hidden">
-                <div class="px-6 py-4 border-b border-dark-border">
-                    <h3 class="text-lg font-semibold text-white">Detailed Quantization Comparison</h3>
+            <div class="mt-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Detailed Quantization Comparison</h3>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
-                            <tr class="bg-dark-surface text-gray-400 text-xs uppercase tracking-wider">
+                            <tr class="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider">
                                 <th class="px-6 py-4 text-left font-medium">Metric</th>
                                 <th class="px-6 py-4 text-center font-medium">BF16</th>
                                 <th class="px-6 py-4 text-center font-medium">Q8_0</th>
                                 <th class="px-6 py-4 text-center font-medium">Q4_K_M</th>
                             </tr>
                         </thead>
-                        <tbody id="comparisonBody" class="divide-y divide-dark-border text-sm">
+                        <tbody id="comparisonBody" class="divide-y divide-slate-200 dark:divide-slate-700 text-sm">
                             <!-- Populated by JS -->
                         </tbody>
                     </table>
@@ -440,14 +441,14 @@
         <div id="system" class="tab-content">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- CPU Info -->
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-primary-500/10 flex items-center justify-center">
                             <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-white">CPU Information</h3>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">CPU Information</h3>
                     </div>
                     <div class="space-y-3" id="cpuInfo">
                         <!-- Populated by JS -->
@@ -455,14 +456,14 @@
                 </div>
 
                 <!-- Memory Info -->
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-accent-purple/10 flex items-center justify-center">
                             <svg class="w-5 h-5 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-white">Memory Status</h3>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Memory Status</h3>
                     </div>
                     <div class="space-y-4" id="memoryInfo">
                         <!-- Populated by JS -->
@@ -470,45 +471,45 @@
                 </div>
 
                 <!-- GPU Info -->
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-accent-amber/10 flex items-center justify-center">
                             <svg class="w-5 h-5 text-accent-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-white">GPU Status</h3>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">GPU Status</h3>
                     </div>
-                    <div id="gpuInfo" class="text-gray-300">
+                    <div id="gpuInfo" class="text-slate-700 dark:text-slate-300">
                         <!-- Populated by JS -->
                     </div>
                 </div>
 
                 <!-- Environment -->
-                <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-10 h-10 rounded-lg bg-accent-teal/10 flex items-center justify-center">
                             <svg class="w-5 h-5 text-accent-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-semibold text-white">Test Environment</h3>
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Test Environment</h3>
                     </div>
-                    <div class="space-y-2 text-sm text-gray-300">
-                        <div class="flex justify-between py-2 border-b border-dark-border">
-                            <span class="text-gray-400">Platform</span>
+                    <div class="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                        <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                            <span class="text-slate-500 dark:text-slate-400">Platform</span>
                             <span class="font-mono">Linux x86_64</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-dark-border">
-                            <span class="text-gray-400">Inference Engine</span>
+                        <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                            <span class="text-slate-500 dark:text-slate-400">Inference Engine</span>
                             <span class="font-mono">llama-cpp-python</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b border-dark-border">
-                            <span class="text-gray-400">Context Window</span>
+                        <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                            <span class="text-slate-500 dark:text-slate-400">Context Window</span>
                             <span class="font-mono">4096 (Q4/Q8) / 32768 (BF16)</span>
                         </div>
                         <div class="flex justify-between py-2">
-                            <span class="text-gray-400">Test Type</span>
+                            <span class="text-slate-500 dark:text-slate-400">Test Type</span>
                             <span class="font-mono text-accent-emerald">CPU-Only</span>
                         </div>
                     </div>
@@ -518,13 +519,13 @@
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 border-t border-dark-border mt-12 py-6">
+    <footer class="relative z-10 border-t border-slate-200 dark:border-slate-700 mt-12 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-sm text-gray-500">
+                <p class="text-sm text-slate-500 dark:text-slate-500">
                     SLM Evaluation Dashboard • Generated <span id="generatedAt">--</span>
                 </p>
-                <div class="flex items-center gap-4 text-sm text-gray-500">
+                <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-500">
                     <span>Qwen 3.5/3.6 & Gemma 4 Evaluation</span>
                     <span class="w-1 h-1 rounded-full bg-gray-600"></span>
                     <span class="text-accent-emerald">9 Model Variants</span>
@@ -545,11 +546,37 @@
             await loadData();
             setupTabs();
             setupThemeToggle();
+            renderSummaryCards();
             renderLeaderboard();
             renderComparison();
             renderSystemInfo();
             initCharts();
         });
+
+        // Populate the three summary stat cards from live model data
+        function renderSummaryCards() {
+            if (!modelData.length) return;
+
+            // Best Overall: highest avg_accuracy
+            const bestOverall = modelData.reduce((a, b) => a.avg_accuracy > b.avg_accuracy ? a : b);
+            document.getElementById('bestOverallName').textContent = bestOverall.display_name;
+            document.getElementById('bestOverallScore').textContent =
+                bestOverall.avg_accuracy.toFixed(1) + '% avg accuracy';
+
+            // Best Throughput: highest inference throughput
+            const bestThroughput = modelData.reduce((a, b) =>
+                a.inference.throughput > b.inference.throughput ? a : b);
+            document.getElementById('bestThroughputName').textContent = bestThroughput.display_name;
+            document.getElementById('bestThroughputScore').textContent =
+                bestThroughput.inference.throughput.toFixed(2) + ' tok/s';
+
+            // Best HumanEval: highest humaneval accuracy
+            const bestHumanEval = modelData.reduce((a, b) =>
+                a.humaneval.accuracy > b.humaneval.accuracy ? a : b);
+            document.getElementById('bestHumanEvalName').textContent = bestHumanEval.display_name;
+            document.getElementById('bestHumanEvalScore').textContent =
+                bestHumanEval.humaneval.accuracy.toFixed(1) + '% pass@1';
+        }
 
         // Load data from API
         async function loadData() {
@@ -623,11 +650,11 @@
                     
                     // Update buttons
                     tabBtns.forEach(b => {
-                        b.classList.remove('active', 'bg-primary-500', 'text-white');
-                        b.classList.add('text-gray-400');
+                        b.classList.remove('active', 'bg-indigo-600', 'text-white', 'shadow-sm');
+                        b.classList.add('text-slate-500', 'dark:text-slate-400');
                     });
-                    btn.classList.add('active', 'bg-primary-500', 'text-white');
-                    btn.classList.remove('text-gray-400');
+                    btn.classList.add('active', 'bg-indigo-600', 'text-white', 'shadow-sm');
+                    btn.classList.remove('text-slate-500', 'dark:text-slate-400');
                     
                     // Update content
                     tabContents.forEach(content => {
@@ -638,16 +665,75 @@
             });
             
             // Set initial active state
-            document.querySelector('.tab-btn.active').classList.add('bg-primary-500', 'text-white');
+            document.querySelector('.tab-btn.active').classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
         }
 
-        // Theme toggle
+        // Theme toggle functionality - simplified to only toggle 'dark' class
         function setupThemeToggle() {
             const toggle = document.getElementById('themeToggle');
             const html = document.documentElement;
             
+            // Default is always dark; only switch to light if user explicitly chose it
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                html.classList.remove('dark');
+            } else {
+                // Enforce dark as default (covers null / 'dark' / anything else)
+                html.classList.add('dark');
+                if (!savedTheme) localStorage.setItem('theme', 'dark');
+            }
+            
             toggle.addEventListener('click', () => {
-                html.classList.toggle('dark');
+                const isDark = html.classList.contains('dark');
+                
+                if (isDark) {
+                    // Switch to light mode
+                    html.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    // Switch to dark mode
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+                
+                // Update charts for new theme
+                updateChartTheme(!isDark);
+            });
+        }
+        
+        // Function to update chart colors based on theme - using slate palette
+        function updateChartTheme(isDark) {
+            const textColor = isDark ? '#94a3b8' : '#475569';  // slate-400 / slate-600
+            const gridColor = isDark ? '#334155' : '#e2e8f0';  // slate-700 / slate-200
+            const titleColor = isDark ? '#cbd5e1' : '#1e293b';  // slate-300 / slate-800
+            
+            Object.values(charts).forEach(chart => {
+                if (chart.options.scales.x) {
+                    if (chart.options.scales.x.title) {
+                        chart.options.scales.x.title.color = titleColor;
+                    }
+                    if (chart.options.scales.x.ticks) {
+                        chart.options.scales.x.ticks.color = textColor;
+                    }
+                    if (chart.options.scales.x.grid) {
+                        chart.options.scales.x.grid.color = gridColor;
+                    }
+                }
+                if (chart.options.scales.y) {
+                    if (chart.options.scales.y.title) {
+                        chart.options.scales.y.title.color = titleColor;
+                    }
+                    if (chart.options.scales.y.ticks) {
+                        chart.options.scales.y.ticks.color = textColor;
+                    }
+                    if (chart.options.scales.y.grid) {
+                        chart.options.scales.y.grid.color = gridColor;
+                    }
+                }
+                if (chart.options.plugins.legend && chart.options.plugins.legend.labels) {
+                    chart.options.plugins.legend.labels.color = textColor;
+                }
+                chart.update();
             });
         }
 
@@ -655,11 +741,11 @@
         function renderLeaderboard() {
             const tbody = document.getElementById('leaderboardBody');
             tbody.innerHTML = modelData.map((model, index) => {
-                const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : 'bg-dark-surface text-gray-400';
+                const rankClass = index === 0 ? 'rank-1' : index === 1 ? 'rank-2' : index === 2 ? 'rank-3' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400';
                 const isBest = model.quantization === 'BF16';
                 
                 return `
-                    <tr class="hover:bg-dark-surface/50 transition-colors">
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                         <td class="px-6 py-4">
                             <div class="w-8 h-8 rounded-full ${rankClass} flex items-center justify-center font-bold text-sm">
                                 ${model.display_rank}
@@ -668,34 +754,34 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
                                 <div>
-                                    <div class="font-mono font-medium text-white">${model.display_name}</div>
-                                    <div class="text-xs text-gray-500">${model.inference.model_size_gb}GB</div>
+                                    <div class="font-mono font-medium text-slate-900 dark:text-white">${model.display_name}</div>
+                                    <div class="text-xs text-slate-500 dark:text-slate-500">${model.inference.model_size_gb}GB</div>
                                 </div>
                                 ${isBest ? '<span class="px-2 py-0.5 rounded-full bg-accent-emerald/20 text-accent-emerald text-xs font-medium">BEST</span>' : ''}
                             </div>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <div class="font-mono font-semibold ${model.humaneval.accuracy >= 50 ? 'text-accent-emerald' : 'text-primary-400'}">${model.humaneval.accuracy.toFixed(2)}%</div>
-                            <div class="text-xs text-gray-500">${model.humaneval.samples} samples</div>
+                            <div class="font-mono font-semibold text-indigo-400">${model.humaneval.accuracy.toFixed(1)}%</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-500">${model.humaneval.samples} samples</div>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <div class="font-mono font-semibold ${model.hellaswag.accuracy >= 75 ? 'text-accent-emerald' : 'text-primary-400'}">${model.hellaswag.accuracy.toFixed(1)}%</div>
-                            <div class="text-xs text-gray-500">${model.hellaswag.samples} samples</div>
+                            <div class="font-mono font-semibold text-indigo-400">${model.hellaswag.accuracy.toFixed(1)}%</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-500">${model.hellaswag.samples} samples</div>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <div class="font-mono font-semibold ${model.bfcl.accuracy >= 50 ? 'text-accent-emerald' : 'text-primary-400'}">${model.bfcl.accuracy.toFixed(2)}%</div>
-                            <div class="text-xs text-gray-500">${model.bfcl.samples} samples</div>
+                            <div class="font-mono font-semibold text-indigo-400">${model.bfcl.accuracy.toFixed(1)}%</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-500">${model.bfcl.samples} samples</div>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <div class="font-mono font-bold text-white">${model.avg_accuracy.toFixed(1)}%</div>
+                            <div class="font-mono font-bold text-emerald-400">${model.avg_accuracy.toFixed(1)}%</div>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            <div class="font-mono text-gray-300">${model.inference.throughput.toFixed(1)}</div>
-                            <div class="text-xs text-gray-500">tok/s</div>
+                            <div class="font-mono text-slate-700 dark:text-slate-300">${model.inference.throughput.toFixed(1)}</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-500">tok/s</div>
                         </td>
                         <td class="px-6 py-4 text-center">
                             <div class="font-mono ${(model.inference.memory_gb || 0) > 50 ? 'text-accent-rose' : (model.inference.memory_gb || 0) > 30 ? 'text-accent-amber' : 'text-accent-emerald'}">${(model.inference.memory_gb || model.inference.model_size_gb * 1.2).toFixed(1)}</div>
-                            <div class="text-xs text-gray-500">GB RAM</div>
+                            <div class="text-xs text-slate-500 dark:text-slate-500">GB RAM</div>
                         </td>
                     </tr>
                 `;
@@ -719,11 +805,11 @@
             ];
             
             tbody.innerHTML = rows.map(row => `
-                <tr class="hover:bg-dark-surface/30">
-                    <td class="px-6 py-3 text-gray-300 font-medium">${row.label}</td>
-                    <td class="px-6 py-3 text-center font-mono ${row.label === 'Model Size' ? 'text-accent-rose' : 'text-accent-emerald'}">${row.bf16} <span class="text-gray-500 text-xs">${row.unit}</span></td>
-                    <td class="px-6 py-3 text-center font-mono text-primary-400">${row.q8} <span class="text-gray-500 text-xs">${row.unit}</span></td>
-                    <td class="px-6 py-3 text-center font-mono text-gray-400">${row.q4} <span class="text-gray-500 text-xs">${row.unit}</span></td>
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30">
+                    <td class="px-6 py-3 text-slate-700 dark:text-slate-300 font-medium">${row.label}</td>
+                    <td class="px-6 py-3 text-center font-mono ${row.label === 'Model Size' ? 'text-accent-rose' : 'text-accent-emerald'}">${row.bf16} <span class="text-slate-500 dark:text-slate-500 text-xs">${row.unit}</span></td>
+                    <td class="px-6 py-3 text-center font-mono text-primary-400">${row.q8} <span class="text-slate-500 dark:text-slate-500 text-xs">${row.unit}</span></td>
+                    <td class="px-6 py-3 text-center font-mono text-slate-500 dark:text-slate-400">${row.q4} <span class="text-slate-500 dark:text-slate-500 text-xs">${row.unit}</span></td>
                 </tr>
             `).join('');
         }
@@ -736,45 +822,45 @@
             
             // CPU Info
             document.getElementById('cpuInfo').innerHTML = `
-                <div class="flex justify-between py-2 border-b border-dark-border">
-                    <span class="text-gray-400">Model</span>
-                    <span class="font-mono text-white">${cpu.model || 'AMD EPYC 7B13'}</span>
+                <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-500 dark:text-slate-400">Model</span>
+                    <span class="font-mono text-slate-900 dark:text-white">${cpu.model || 'AMD EPYC 7B13'}</span>
                 </div>
-                <div class="flex justify-between py-2 border-b border-dark-border">
-                    <span class="text-gray-400">Cores</span>
-                    <span class="font-mono text-white">${cpu.cores || 32}</span>
+                <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-500 dark:text-slate-400">Cores</span>
+                    <span class="font-mono text-slate-900 dark:text-white">${cpu.cores || 32}</span>
                 </div>
-                <div class="flex justify-between py-2 border-b border-dark-border">
-                    <span class="text-gray-400">Threads</span>
-                    <span class="font-mono text-white">${cpu.threads || 64}</span>
+                <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-500 dark:text-slate-400">Threads</span>
+                    <span class="font-mono text-slate-900 dark:text-white">${cpu.threads || 64}</span>
                 </div>
                 <div class="flex justify-between py-2">
-                    <span class="text-gray-400">Architecture</span>
-                    <span class="font-mono text-white">${cpu.architecture || 'x86_64'}</span>
+                    <span class="text-slate-500 dark:text-slate-400">Architecture</span>
+                    <span class="font-mono text-slate-900 dark:text-white">${cpu.architecture || 'x86_64'}</span>
                 </div>
             `;
             
             // Memory Info
             const memPercent = memory.utilization_pct || 0;
             document.getElementById('memoryInfo').innerHTML = `
-                <div class="flex justify-between py-2 border-b border-dark-border">
-                    <span class="text-gray-400">Total RAM</span>
-                    <span class="font-mono text-white">${memory.total_gb?.toFixed(1) || 125.8} GB</span>
+                <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-500 dark:text-slate-400">Total RAM</span>
+                    <span class="font-mono text-slate-900 dark:text-white">${memory.total_gb?.toFixed(1) || 125.8} GB</span>
                 </div>
-                <div class="flex justify-between py-2 border-b border-dark-border">
-                    <span class="text-gray-400">Available</span>
+                <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-500 dark:text-slate-400">Available</span>
                     <span class="font-mono text-accent-emerald">${memory.available_gb?.toFixed(1) || 123.5} GB</span>
                 </div>
-                <div class="flex justify-between py-2 border-b border-dark-border">
-                    <span class="text-gray-400">Used</span>
+                <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-500 dark:text-slate-400">Used</span>
                     <span class="font-mono text-accent-amber">${memory.used_gb?.toFixed(1) || 2.3} GB</span>
                 </div>
                 <div class="mt-3">
                     <div class="flex justify-between text-xs mb-1">
-                        <span class="text-gray-400">Utilization</span>
+                        <span class="text-slate-500 dark:text-slate-400">Utilization</span>
                         <span class="font-mono">${memPercent.toFixed(1)}%</span>
                     </div>
-                    <div class="h-2 bg-dark-surface rounded-full overflow-hidden">
+                    <div class="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                         <div class="h-full bg-gradient-to-r from-accent-emerald to-primary-500 rounded-full progress-animate" style="width: ${memPercent}%"></div>
                     </div>
                 </div>
@@ -782,22 +868,22 @@
             
             // GPU Info
             document.getElementById('gpuInfo').innerHTML = gpu.available ? `
-                <div class="flex justify-between py-2 border-b border-dark-border">
-                    <span class="text-gray-400">GPU Count</span>
-                    <span class="font-mono text-white">${gpu.count}</span>
+                <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700">
+                    <span class="text-slate-500 dark:text-slate-400">GPU Count</span>
+                    <span class="font-mono text-slate-900 dark:text-white">${gpu.count}</span>
                 </div>
                 <div class="flex justify-between py-2">
-                    <span class="text-gray-400">Status</span>
+                    <span class="text-slate-500 dark:text-slate-400">Status</span>
                     <span class="font-mono text-accent-emerald">Active</span>
                 </div>
             ` : `
-                <div class="flex items-center gap-3 p-4 bg-dark-surface rounded-lg border border-dark-border">
-                    <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center gap-3 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+                    <svg class="w-8 h-8 text-slate-500 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                     </svg>
                     <div>
-                        <div class="text-white font-medium">CPU-Only Environment</div>
-                        <div class="text-sm text-gray-500">All inference performed on AMD EPYC CPU</div>
+                        <div class="text-slate-900 dark:text-white font-medium">CPU-Only Environment</div>
+                        <div class="text-sm text-slate-500 dark:text-slate-500">All inference performed on AMD EPYC CPU</div>
                     </div>
                 </div>
             `;
@@ -805,29 +891,60 @@
 
         // Initialize charts
         function initCharts() {
+            // Direct quantization-to-color map — keyed by exact quantization strings
             const chartColors = {
-                bf16: '#ec4899',  // Pink
-                q8: '#8b5cf6',    // Purple
-                q4: '#6366f1',    // Indigo
+                'BF16':   '#ec4899',   // Pink
+                'Q8_0':   '#8b5cf6',   // Purple
+                'Q4_K_M': '#6366f1',   // Indigo
             };
             
             // Accuracy comparison chart
+            // Design: x-axis = models, 3 datasets = one per benchmark (HumanEval / HellaSwag / BFCL)
+            // This keeps the legend fixed at 3 entries regardless of how many models are added.
+            const benchmarkColors = {
+                humaneval: { bg: 'rgba(16,185,129,0.75)',  border: '#10b981' },  // emerald
+                hellaswag: { bg: 'rgba(99,102,241,0.75)',  border: '#6366f1' },  // indigo
+                bfcl:      { bg: 'rgba(245,158,11,0.75)',  border: '#f59e0b' },  // amber
+            };
             const accuracyCtx = document.getElementById('accuracyChart').getContext('2d');
             charts.accuracy = new Chart(accuracyCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['HumanEval', 'HellaSwag', 'BFCL'],
-                    datasets: modelData.map(model => ({
-                        label: model.quantization,
-                        data: [
-                            model.humaneval.accuracy,
-                            model.hellaswag.accuracy,
-                            model.bfcl.accuracy
-                        ],
-                        backgroundColor: chartColors[model.quantization.toLowerCase().replace('_', '')] || '#6366f1',
-                        borderRadius: 6,
-                        borderSkipped: false,
-                    }))
+                    // Short label: "Qwen 3.6 BF16", "Qwen 3.5 Q8", etc.
+                    labels: modelData.map(m => {
+                        const family = m.name.includes('qwen3.6') ? 'Qwen3.6' :
+                                       m.name.includes('qwen3.5') ? 'Qwen3.5' : 'Gemma4';
+                        return `${family} ${m.quantization}`;
+                    }),
+                    datasets: [
+                        {
+                            label: 'HumanEval',
+                            data: modelData.map(m => m.humaneval.accuracy),
+                            backgroundColor: benchmarkColors.humaneval.bg,
+                            borderColor: benchmarkColors.humaneval.border,
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            borderSkipped: false,
+                        },
+                        {
+                            label: 'HellaSwag',
+                            data: modelData.map(m => m.hellaswag.accuracy),
+                            backgroundColor: benchmarkColors.hellaswag.bg,
+                            borderColor: benchmarkColors.hellaswag.border,
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            borderSkipped: false,
+                        },
+                        {
+                            label: 'BFCL',
+                            data: modelData.map(m => m.bfcl.accuracy),
+                            backgroundColor: benchmarkColors.bfcl.bg,
+                            borderColor: benchmarkColors.bfcl.border,
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            borderSkipped: false,
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -850,7 +967,7 @@
                             borderWidth: 1,
                             padding: 12,
                             callbacks: {
-                                label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(2)}%`
+                                label: (ctx) => `${ctx.dataset.label}: ${ctx.raw.toFixed(1)}%`
                             }
                         }
                     },
@@ -858,21 +975,15 @@
                         y: {
                             beginAtZero: true,
                             max: 100,
-                            grid: {
-                                color: '#27273a',
-                                drawBorder: false
-                            },
-                            ticks: {
-                                color: '#6b7280',
-                                callback: (v) => v + '%'
-                            }
+                            grid: { color: '#27273a', drawBorder: false },
+                            ticks: { color: '#6b7280', callback: (v) => v + '%' }
                         },
                         x: {
-                            grid: {
-                                display: false
-                            },
+                            grid: { display: false },
                             ticks: {
-                                color: '#9ca3af'
+                                color: '#9ca3af',
+                                maxRotation: 35,
+                                font: { size: 11 }
                             }
                         }
                     }
@@ -1018,51 +1129,50 @@
             });
 
             // RAM vs Accuracy chart
+            // One dataset per quantization so Chart.js generates legend items natively
+            // (generateLabels workaround ignored the text color property)
             const ramCtx = document.getElementById('ramAccuracyChart').getContext('2d');
-            charts.ramAccuracy = new Chart(ramCtx, {
-                type: 'scatter',
-                data: {
-                    datasets: [{
-                        label: 'Model Variants',
-                        data: modelData.map(m => ({
+            const ramQuantDefs = [
+                { quant: 'BF16',   color: '#ec4899' },
+                { quant: 'Q8_0',   color: '#8b5cf6' },
+                { quant: 'Q4_K_M', color: '#6366f1' },
+            ];
+            const ramDatasets = ramQuantDefs
+                .map(def => {
+                    const models = modelData.filter(m => m.quantization === def.quant);
+                    if (!models.length) return null;
+                    return {
+                        label: def.quant,
+                        data: models.map(m => ({
                             x: m.inference.memory_gb || m.inference.model_size_gb * 1.2,
                             y: m.avg_accuracy,
                             label: m.display_name,
                             quantization: m.quantization
                         })),
-                        backgroundColor: modelData.map(m => 
-                            m.quantization === 'BF16' ? '#ec4899' : 
-                            m.quantization === 'Q8_0' ? '#8b5cf6' : '#6366f1'
-                        ),
-                        pointRadius: 15,
-                        pointHoverRadius: 18,
-                        pointBorderColor: '#fff',
+                        backgroundColor: def.color,
+                        pointRadius: 13,
+                        pointHoverRadius: 16,
+                        pointBorderColor: '#1e293b',
                         pointBorderWidth: 2,
-                    }]
-                },
+                    };
+                })
+                .filter(Boolean);
+
+            charts.ramAccuracy = new Chart(ramCtx, {
+                type: 'scatter',
+                data: { datasets: ramDatasets },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { 
+                        legend: {
                             display: true,
                             position: 'top',
                             labels: {
                                 color: '#9ca3af',
                                 font: { family: 'Inter' },
                                 usePointStyle: true,
-                                generateLabels: (chart) => {
-                                    const uniqueQuants = [...new Set(modelData.map(m => m.quantization))];
-                                    const colors = { 'BF16': '#ec4899', 'Q8_0': '#8b5cf6', 'Q4_K_M': '#6366f1' };
-                                    return uniqueQuants.map(q => ({
-                                        text: q,
-                                        fillStyle: colors[q] || '#6366f1',
-                                        strokeStyle: '#fff',
-                                        lineWidth: 2,
-                                        hidden: false,
-                                        index: 0
-                                    }));
-                                }
+                                padding: 16
                             }
                         },
                         tooltip: {
@@ -1098,7 +1208,7 @@
                                 drawBorder: false
                             },
                             ticks: { 
-                                color: '#6b7280',
+                                color: '#9ca3af',
                                 callback: (v) => v + ' GB'
                             },
                             min: 0
@@ -1115,7 +1225,7 @@
                                 drawBorder: false
                             },
                             ticks: { 
-                                color: '#6b7280',
+                                color: '#9ca3af',
                                 callback: (v) => v + '%'
                             },
                             min: 40,
