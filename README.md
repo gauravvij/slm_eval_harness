@@ -163,6 +163,61 @@ export OPENROUTER_API_KEY="your-key-here"
 python cli.py --adapter openrouter --model qwen/qwen3.5-9b ...
 ```
 
+## Dashboard Chatbot (LLM-backed)
+
+The dashboard chatbot now uses a backend API route [`/api/chat`](server.py:367) in [`server.py`](server.py) and sends requests from [`getNeoResponse()`](templates/index.html:593).
+
+### 1) Configure provider/model
+
+Use environment variables before starting the Flask server:
+
+```bash
+# Option A: Local Ollama (default)
+export NEO_CHAT_PROVIDER=ollama
+export NEO_CHAT_MODEL=qwen3.5:9b
+export NEO_CHAT_OLLAMA_URL=http://localhost:11434
+
+# Option B: OpenRouter
+export NEO_CHAT_PROVIDER=openrouter
+export NEO_CHAT_MODEL=qwen/qwen3.5-32b
+export OPENROUTER_API_KEY=your_openrouter_key
+```
+
+Optional tuning:
+
+```bash
+export NEO_CHAT_TEMPERATURE=0.2
+export NEO_CHAT_MAX_TOKENS=600
+```
+
+### 2) How it works
+
+- Frontend chat UI sends user message + short history to [`/api/chat`](server.py:367).
+- Backend loads leaderboard models from [`model_comparison.json`](reports/model_comparison.json).
+- Chat prompt is grounded with leaderboard metrics so recommendations are limited to populated leaderboard models.
+- Build/create requests are refused by guardrail and redirected to `https://heyneo.com`.
+- If LLM call fails, backend uses deterministic fallback ranking from leaderboard metrics.
+
+### 3) Runtime override (without restarting server)
+
+The frontend can pass provider/model/key overrides via request payload (from browser `localStorage`).
+
+In browser DevTools console:
+
+```js
+localStorage.setItem('neoChatProvider', 'openrouter')
+localStorage.setItem('neoChatModel', 'qwen/qwen3.5-32b')
+localStorage.setItem('neoChatOpenrouterKey', 'YOUR_KEY')
+```
+
+Clear overrides:
+
+```js
+localStorage.removeItem('neoChatProvider')
+localStorage.removeItem('neoChatModel')
+localStorage.removeItem('neoChatOpenrouterKey')
+```
+
 ### HuggingFace (Direct)
 
 ```bash

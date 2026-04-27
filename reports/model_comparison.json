@@ -314,13 +314,109 @@
                 "model_size_gb": 54.0,
                 "quantization": "BF16"
             }
+        },
+        "qwen36_27b_bf16": {
+            "humaneval": {
+                "accuracy": 0.5609756097560976,
+                "samples": 164,
+                "passed": 92,
+                "failed": 72,
+                "avg_time_per_sample": 15.2,
+                "note": "Full HumanEval evaluation (164 samples) - BF16 quantization. 56.10% accuracy. Exported from checkpoint."
+            },
+            "hellaswag": {
+                "accuracy": 0.90,
+                "samples": 100,
+                "passed": 90,
+                "avg_time_per_sample": 45.5,
+                "note": "Full HellaSwag evaluation (100 samples) - BF16 quantization. 90% accuracy. Completed via cli.py GGUF adapter."
+            },
+            "bfcl": {
+                "accuracy": 0.6325,
+                "samples": 400,
+                "passed": 253,
+                "failed": 147,
+                "avg_time_per_sample": 37.25,
+                "note": "Full BFCL evaluation (400 samples) - BF16 quantization. 63.25% accuracy. Resumed from checkpoint at sample 152."
+            },
+            "inference_metrics": {
+                "ttft_ms": 350.0,
+                "throughput_tok_s": 15.5,
+                "peak_ram_gb": 54.0,
+                "model_size_gb": 53.8,
+                "quantization": "BF16"
+            }
+        },
+        "qwen36_27b_q4km": {
+            "humaneval": {
+                "accuracy": 0.5060975609756098,
+                "samples": 164,
+                "passed": 83,
+                "failed": 81,
+                "avg_time_per_sample": 8.5,
+                "note": "Full HumanEval evaluation (164 samples) - Q4_K_M quantization. 50.61% accuracy. Completed via cli.py GGUF adapter."
+            },
+            "hellaswag": {
+                "accuracy": 0.86,
+                "samples": 100,
+                "passed": 86,
+                "avg_time_per_sample": 22.3,
+                "note": "Full HellaSwag evaluation (100 samples) - Q4_K_M quantization. 86% accuracy. Completed via cli.py GGUF adapter."
+            },
+            "bfcl": {
+                "accuracy": 0.63,
+                "samples": 400,
+                "passed": 252,
+                "failed": 148,
+                "avg_time_per_sample": 16.41,
+                "note": "Full BFCL evaluation (400 samples) - Q4_K_M quantization. 63.00% accuracy. Completed all 400 samples with checkpoint resumption."
+            },
+            "inference_metrics": {
+                "ttft_ms": 280.0,
+                "throughput_tok_s": 22.5,
+                "peak_ram_gb": 28.0,
+                "model_size_gb": 16.8,
+                "quantization": "Q4_K_M"
+            }
+        },
+        "qwen36_27b_q80": {
+            "humaneval": {
+                "accuracy": 0.524390243902439,
+                "samples": 164,
+                "passed": 86,
+                "failed": 78,
+                "avg_time_per_sample": 12.3,
+                "note": "Full HumanEval evaluation (164 samples) - Q8_0 quantization. 52.44% accuracy. Resumed from checkpoint at sample 139, completed all 164 samples."
+            },
+            "hellaswag": {
+                "accuracy": 0.83,
+                "samples": 100,
+                "passed": 83,
+                "avg_time_per_sample": 28.7,
+                "note": "Full HellaSwag evaluation (100 samples) - Q8_0 quantization. 83% accuracy. Completed via cli.py GGUF adapter."
+            },
+            "bfcl": {
+                "accuracy": 0.63,
+                "samples": 400,
+                "passed": 252,
+                "failed": 148,
+                "avg_time_per_sample": 27.12,
+                "note": "Full BFCL evaluation (400 samples) - Q8_0 quantization. 63.00% accuracy. Completed all 400 samples with checkpoint resumption."
+            },
+            "inference_metrics": {
+                "ttft_ms": 320.0,
+                "throughput_tok_s": 18.0,
+                "peak_ram_gb": 42.0,
+                "model_size_gb": 28.6,
+                "quantization": "Q8_0"
+            }
         }
     },
     "benchmarks": {},
-    "generated_at": "2026-04-17",
+    "generated_at": "2026-04-24",
     "summary": {
-        "total_samples_evaluated": 9398,
-        "models_compared": 12,
+        "total_samples_evaluated": 9798,
+        "models_compared": 13,
         "benchmarks_completed": 3,
         "notes": [
             "All Qwen3.6-35B-A3B variants now have normalized sample sizes:",
@@ -341,8 +437,30 @@
             "- BFCL: Q4=54%, Q8=52%, BF16=55% (BF16 TOP PERFORMER)",
             "- Inference: Q4 TTFT=50ms, Q8=60ms, BF16=108ms",
             "- Peak RAM: Q4=24.7GB, Q8=26.1GB, BF16=54.4GB",
-            "- Throughput: Q4=20.8 tok/s, Q8=17.4 tok/s, BF16=9.5 tok/s"
+            "- Throughput: Q4=20.8 tok/s, Q8=17.4 tok/s, BF16=9.5 tok/s",
+            "",
+            "Qwen 3.6 27B BF16 BFCL evaluation completed:",
+            "- BFCL: 63.25% accuracy (253/400 passed) - TOP PERFORMER",
+            "- Resumed from checkpoint at sample 152, completed all 400 samples",
+            "- Avg time per sample: 37.25s, Peak RAM: 54GB",
+            "- BF16 quantization with GGUF adapter, 32K context window",
+            "",
+            "Qwen 3.6 27B Q4_K_M BFCL evaluation completed:",
+            "- BFCL: 63.00% accuracy (252/400 passed) - COMPLETED",
+            "- Avg time per sample: 16.41s, Peak RAM: 28GB",
+            "- Q4_K_M quantization (16.8GB), 2.3x faster than BF16",
+            "",
+            "Qwen 3.6 27B Q8_0 BFCL evaluation completed:",
+            "- BFCL: 63.00% accuracy (252/400 passed) - COMPLETED",
+            "- Avg time per sample: 27.12s, Peak RAM: 42GB",
+            "- Q8_0 quantization (28.6GB), 1.4x faster than BF16",
+            "",
+            "Quantization comparison for Qwen 3.6 27B BFCL:",
+            "- BF16: 63.25% accuracy, 37.25s/sample, 54GB RAM",
+            "- Q4_K_M: 63.00% accuracy, 16.41s/sample, 28GB RAM (2.3x speedup)",
+            "- Q8_0: 63.00% accuracy, 27.12s/sample, 42GB RAM (1.4x speedup)",
+            "- All three variants achieve ~63% accuracy on function calling"
         ],
-        "last_updated": "2026-04-22T01:59:16.676765"
+        "last_updated": "2026-04-24T14:30:00.000000"
     }
 }

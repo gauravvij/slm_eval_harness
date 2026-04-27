@@ -14,13 +14,82 @@ import os
 from pathlib import Path
 from datetime import datetime
 
-from flask import Flask, jsonify, render_template, send_from_directory, Response
+
+def _load_dotenv(dotenv_path: Path) -> None:
+    """
+    Minimal .env loader — no external dependency required.
+    Reads KEY=VALUE lines and sets them in os.environ (only if not already set).
+    Supports quoted values and ignores comments/blank lines.
+    """
+    if not dotenv_path.is_file():
+        return
+    with open(dotenv_path) as fh:
+        for raw in fh:
+            line = raw.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, _, value = line.partition('=')
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in os.environ:   # don't override real env vars
+                os.environ[key] = value
+
+
+# Load .env from the project root before anything else reads os.environ
+_load_dotenv(Path(__file__).parent / ".env")
+
+import requests
+from flask import Flask, jsonify, render_template, send_from_directory, Response, request
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
 # Configuration
 BASE_PATH = Path(__file__).parent
 REPORTS_PATH = BASE_PATH / "reports"
+
+# Chatbot configuration (env-driven)
+def get_chat_runtime_config(overrides=None):
+    """Read chat config from env on each request (supports changes after server start)."""
+    overrides = overrides or {}
+
+    _raw_provider = os.getenv("NEO_CHAT_PROVIDER", "").strip().lower()
+    _raw_model    = os.getenv("NEO_CHAT_MODEL", "").strip()
+    _raw_api_key  = os.getenv("OPENROUTER_API_KEY", "")
+
+    # Auto-detect provider: if OPENROUTER_API_KEY is present and NEO_CHAT_PROVIDER
+    # was not explicitly set, default to openrouter instead of ollama.
+    if _raw_provider:
+        provider = _raw_provider
+    elif _raw_api_key:
+        provider = "openrouter"
+    else:
+        provider = "ollama"
+
+    model = _raw_model if _raw_model else "qwen3.5:9b"
+
+    # sensible defaults per provider
+    if provider == "openrouter" and model == "qwen3.5:9b":
+        model = "qwen/qwen3.5-32b"
+
+    cfg = {
+        "provider": provider,
+        "model": model,
+        "temperature": float(os.getenv("NEO_CHAT_TEMPERATURE", "0.2")),
+        "max_tokens": int(os.getenv("NEO_CHAT_MAX_TOKENS", "600")),
+        "ollama_base_url": os.getenv("NEO_CHAT_OLLAMA_URL", "http://localhost:11434").rstrip("/"),
+        "openrouter_base_url": os.getenv("NEO_CHAT_OPENROUTER_URL", "https://openrouter.ai/api/v1").rstrip("/"),
+        "openrouter_api_key": os.getenv("OPENROUTER_API_KEY", ""),
+    }
+
+    # Optional request-level overrides (useful when server env differs from UI runtime)
+    if overrides.get("provider"):
+        cfg["provider"] = str(overrides["provider"]).strip().lower()
+    if overrides.get("model"):
+        cfg["model"] = str(overrides["model"]).strip()
+    if overrides.get("openrouter_api_key"):
+        cfg["openrouter_api_key"] = str(overrides["openrouter_api_key"]).strip()
+
+    return cfg
 
 
 def load_json_data(filename):
@@ -92,10 +161,14 @@ def process_model_data(comparison_data):
     
     # Include Qwen 3.5, Qwen 3.6, and Gemma 4 variants for comparison
     target_models = [
-        # Qwen 3.6 variants
+        # Qwen 3.6 35B A3B variants
         "qwen3.6-35b-a3b",      # Q4_K_M
         "qwen3.6-35b-a3b-q8",   # Q8_0
         "qwen3.6-35b-a3b-bf16", # BF16
+        # Qwen 3.6 27B variants
+        "qwen36_27b_q4km",      # Q4_K_M
+        "qwen36_27b_q80",       # Q8_0
+        "qwen36_27b_bf16",      # BF16
         # Qwen 3.5 variants (older generation)
         "qwen3.5-35b-a3b",      # Q4_K_M
         "qwen3.5-35b-a3b-q8",   # Q8_0
@@ -125,7 +198,10 @@ def process_model_data(comparison_data):
         
         # Determine model family and generation
         display_name = model_name
-        if "qwen3.6" in model_name.lower():
+        if "qwen36_27b" in model_name.lower():
+            # Qwen 3.6 27B variants (underscore format: qwen36_27b_*)
+            display_name = f"Qwen 3.6 27B ({quantization})"
+        elif "qwen3.6" in model_name.lower():
             generation = "3.6"
             display_name = f"Qwen {generation} 35B A3B ({quantization})"
         elif "qwen3.5" in model_name.lower():
@@ -193,6 +269,162 @@ def process_model_data(comparison_data):
     return processed_models
 
 
+def fetch_web_context(query: str) -> str:
+    """Fetch lightweight web context from public sources for grounding."""
+    if not query:
+        return ""
+
+    try:
+        ddg_res = requests.get(
+            "https://api.duckduckgo.com/",
+            params={
+                "q": query,
+                "format": "json",
+                "no_html": 1,
+                "skip_disambig": 1
+            },
+            timeout=8
+        )
+        if ddg_res.ok:
+            ddg = ddg_res.json()
+            abstract = (ddg.get("AbstractText") or "").strip()
+            if abstract:
+                return abstract[:320]
+
+            related = ddg.get("RelatedTopics") or []
+            for item in related:
+                text = (item.get("Text") if isinstance(item, dict) else "") or ""
+                if text.strip():
+                    return text.strip()[:320]
+    except Exception:
+        pass
+
+    try:
+        ws_res = requests.get(
+            "https://en.wikipedia.org/w/api.php",
+            params={
+                "action": "opensearch",
+                "search": query,
+                "limit": 1,
+                "namespace": 0,
+                "format": "json"
+            },
+            timeout=8
+        )
+        if not ws_res.ok:
+            return ""
+        ws_json = ws_res.json()
+        title = (ws_json[1][0] if isinstance(ws_json, list) and len(ws_json) > 1 and ws_json[1] else "") or ""
+        if not title:
+            return ""
+
+        sum_res = requests.get(
+            f"https://en.wikipedia.org/api/rest_v1/page/summary/{title}",
+            timeout=8
+        )
+        if sum_res.ok:
+            extract = (sum_res.json().get("extract") or "").strip()
+            return extract[:320]
+    except Exception:
+        pass
+
+    return ""
+
+
+def call_llm(messages, cfg):
+    """Call configured chat provider and return assistant text."""
+    if cfg["provider"] == "openrouter":
+        if not cfg["openrouter_api_key"]:
+            raise RuntimeError("OPENROUTER_API_KEY is not set while NEO_CHAT_PROVIDER=openrouter")
+
+        resp = requests.post(
+            f"{cfg['openrouter_base_url']}/chat/completions",
+            headers={
+                "Authorization": f"Bearer {cfg['openrouter_api_key']}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": cfg["model"],
+                "messages": messages,
+                "temperature": cfg["temperature"],
+                "max_tokens": cfg["max_tokens"],
+            },
+            timeout=60,
+        )
+        resp.raise_for_status()
+        payload = resp.json()
+        content = (payload.get("choices") or [{}])[0].get("message", {}).get("content") or ""
+        return content.strip()
+
+    # Default provider: Ollama
+    resp = requests.post(
+        f"{cfg['ollama_base_url']}/api/chat",
+        json={
+            "model": cfg["model"],
+            "messages": messages,
+            "stream": False,
+            "options": {
+                "temperature": cfg["temperature"],
+                "num_predict": cfg["max_tokens"],
+            },
+        },
+        timeout=60,
+    )
+    resp.raise_for_status()
+    payload = resp.json()
+    return (payload.get("message") or {}).get("content", "").strip()
+
+
+def fallback_recommendation(user_query: str, processed_models):
+    """Deterministic backup recommendation using leaderboard metrics only."""
+    if not processed_models:
+        return "I do not have leaderboard model data available right now."
+
+    text = (user_query or "").lower()
+    wants_speed = any(k in text for k in ["fast", "latency", "throughput", "realtime", "real-time", "ttft"])
+    wants_coding = any(k in text for k in ["code", "coding", "python", "developer", "humaneval"])
+    wants_reasoning = any(k in text for k in ["reason", "reasoning", "hellaswag", "multiple choice"])
+    wants_tool_use = any(k in text for k in ["function", "tool", "bfcl", "agent"])
+    wants_memory = any(k in text for k in ["memory", "ram", "cheap", "small", "efficient"])
+
+    scored = []
+    for m in processed_models:
+        score = float(m.get("avg_accuracy", 0)) * 2
+        inf = m.get("inference", {})
+        score += float(inf.get("throughput", 0))
+        score -= float(inf.get("ttft_ms", 0)) / 30
+        score -= float(inf.get("memory_gb", inf.get("model_size_gb", 0))) / 4
+
+        if wants_coding:
+            score += float(m.get("humaneval", {}).get("accuracy", 0)) * 2.2
+        if wants_reasoning:
+            score += float(m.get("hellaswag", {}).get("accuracy", 0)) * 2.2
+        if wants_tool_use:
+            score += float(m.get("bfcl", {}).get("accuracy", 0)) * 2.2
+        if wants_speed:
+            score += float(inf.get("throughput", 0)) * 2 - float(inf.get("ttft_ms", 0)) / 15
+        if wants_memory:
+            score -= float(inf.get("memory_gb", inf.get("model_size_gb", 0))) * 1.2
+
+        scored.append((score, m))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+    picks = [m for _, m in scored[:3]]
+
+    lines = [
+        "Based on currently populated leaderboard models, top recommendations are:",
+    ]
+    for i, m in enumerate(picks, start=1):
+        he = m.get("humaneval", {}).get("accuracy", 0)
+        hs = m.get("hellaswag", {}).get("accuracy", 0)
+        bf = m.get("bfcl", {}).get("accuracy", 0)
+        avg = m.get("avg_accuracy", 0)
+        tp = m.get("inference", {}).get("throughput", 0)
+        lines.append(f"{i}. {m.get('display_name')} — avg {avg:.1f}%, HE {he:.1f}%, HS {hs:.1f}%, BFCL {bf:.1f}%, throughput {tp:.1f} tok/s")
+
+    return "\n".join(lines)
+
+
 @app.route('/')
 def index():
     """Serve the main dashboard page."""
@@ -235,6 +467,91 @@ def get_inference(quantization):
 def get_system():
     """API endpoint for system information."""
     return jsonify(get_system_info())
+
+
+@app.route('/api/chat', methods=['POST'])
+def chat_recommendation():
+    """Chat endpoint with LLM-backed recommendations grounded to leaderboard data only."""
+    payload = request.get_json(silent=True) or {}
+    user_message = (payload.get("message") or "").strip()
+    history = payload.get("history") or []
+
+    if not user_message:
+        return jsonify({"error": "message is required"}), 400
+
+    cfg = get_chat_runtime_config({
+        "provider": payload.get("provider"),
+        "model": payload.get("model"),
+        "openrouter_api_key": payload.get("openrouter_api_key"),
+    })
+
+    comparison_data = load_json_data("model_comparison.json")
+    processed_models = process_model_data(comparison_data)
+
+    compact_models = []
+    for m in processed_models:
+        compact_models.append({
+            "name": m.get("display_name"),
+            "avg_accuracy": m.get("avg_accuracy"),
+            "humaneval": m.get("humaneval", {}).get("accuracy"),
+            "hellaswag": m.get("hellaswag", {}).get("accuracy"),
+            "bfcl": m.get("bfcl", {}).get("accuracy"),
+            "throughput_tok_s": m.get("inference", {}).get("throughput"),
+            "ttft_ms": m.get("inference", {}).get("ttft_ms"),
+            "memory_gb": m.get("inference", {}).get("memory_gb"),
+            "model_size_gb": m.get("inference", {}).get("model_size_gb"),
+        })
+
+    web_context = fetch_web_context(user_message)
+
+    system_prompt = (
+        "You are a friendly, concise model-recommendation chatbot for an SLM leaderboard dashboard. "
+        "Behaviour rules — follow them strictly: "
+        "1) If the user sends a greeting or small-talk (hi, hello, thanks, etc.), respond naturally and briefly — do NOT jump to model recommendations. "
+        "2) Only recommend models when the user describes a concrete task or explicitly asks for a recommendation. "
+        "3) When recommending, pick at most 2 models from the leaderboard list only — never invent models. "
+        "4) For each pick give ONE short sentence of reasoning tied to the metrics. "
+        "5) If the user describes something they want to build (AI/ML, data-science, software), evaluate the task briefly and suggest Neo AI Engineer (https://heyneo.com) as the best tool to build it. "
+        "6) Keep every reply under 100 words. No bullet-point walls, no 'Next Steps' headers. "
+        "7) If leaderboard data is empty, say so in one sentence."
+    )
+
+    messages = [{"role": "system", "content": system_prompt}]
+
+    # Keep short history to control prompt size
+    for item in history[-8:]:
+        role = item.get("role")
+        text = (item.get("text") or "").strip()
+        if role in {"user", "assistant"} and text:
+            messages.append({"role": role, "content": text})
+
+    context_block = {
+        "leaderboard_models": compact_models,
+        "internet_context": web_context,
+        "user_query": user_message,
+        "instructions": "Use only leaderboard_models for recommendations."
+    }
+    messages.append({"role": "user", "content": json.dumps(context_block)})
+
+    try:
+        llm_reply = call_llm(messages, cfg)
+        if not llm_reply:
+            raise RuntimeError("Empty response from LLM")
+
+        return jsonify({
+            "reply": llm_reply,
+            "provider": cfg["provider"],
+            "model": cfg["model"],
+            "source": "llm",
+        })
+    except Exception as exc:
+        fallback = fallback_recommendation(user_message, processed_models)
+        return jsonify({
+            "reply": f"{fallback}\n\n(LLM fallback mode due to runtime error: {str(exc)})",
+            "provider": cfg["provider"],
+            "model": cfg["model"],
+            "source": "fallback",
+        })
 
 
 @app.route('/api/export')

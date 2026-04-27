@@ -84,6 +84,9 @@ class GGUFAdapter(BaseModelAdapter):
             # Ensure n_ctx is an integer (CLI args may pass as string)
             self.n_ctx = int(self.n_ctx) if isinstance(self.n_ctx, str) else self.n_ctx
             
+            # Ensure n_gpu_layers is an integer (CLI args may pass as string)
+            self.n_gpu_layers = int(self.n_gpu_layers) if isinstance(self.n_gpu_layers, str) else self.n_gpu_layers
+            
             # Detect if this is a BF16 model and adjust context accordingly
             # BF16 models often have very large n_ctx_train (e.g., 262144)
             # We need to use a larger n_ctx to avoid 0-token generation issues
