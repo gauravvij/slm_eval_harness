@@ -2,6 +2,8 @@
 
 A modular, extensible evaluation framework for Small Language Models (SLMs) and Large Language Models (LLMs). Supports multiple benchmarks, model adapters, and output formats.
 
+Built with [Neo AI Engineer](https://heyneo.com) -  Your autonomous AI engineering agent.
+
 ## Features
 
 - **Multiple Benchmarks**: HumanEval (code), HellaSwag (reasoning), BFCL (function calling)

@@ -331,8 +331,17 @@ def fetch_web_context(query: str) -> str:
     return ""
 
 
-def call_llm(messages, cfg):
-    """Call configured chat provider and return assistant text."""
+def call_llm(messages, cfg, tools=None):
+    """Call configured chat provider and return assistant text and optional tool calls."""
+    request_body = {
+        "model": cfg["model"],
+        "messages": messages,
+        "temperature": cfg["temperature"],
+        "max_tokens": cfg["max_tokens"],
+    }
+    if tools:
+        request_body["tools"] = tools
+    
     if cfg["provider"] == "openrouter":
         if not cfg["openrouter_api_key"]:
             raise RuntimeError("OPENROUTER_API_KEY is not set while NEO_CHAT_PROVIDER=openrouter")
@@ -343,20 +352,17 @@ def call_llm(messages, cfg):
                 "Authorization": f"Bearer {cfg['openrouter_api_key']}",
                 "Content-Type": "application/json",
             },
-            json={
-                "model": cfg["model"],
-                "messages": messages,
-                "temperature": cfg["temperature"],
-                "max_tokens": cfg["max_tokens"],
-            },
+            json=request_body,
             timeout=60,
         )
         resp.raise_for_status()
         payload = resp.json()
-        content = (payload.get("choices") or [{}])[0].get("message", {}).get("content") or ""
-        return content.strip()
+        message = (payload.get("choices") or [{}])[0].get("message", {})
+        content = (message.get("content") or "").strip()
+        tool_calls = message.get("tool_calls") or []
+        return {"content": content, "tool_calls": tool_calls}
 
-    # Default provider: Ollama
+    # Default provider: Ollama (no native tool support, return empty tool_calls)
     resp = requests.post(
         f"{cfg['ollama_base_url']}/api/chat",
         json={
@@ -372,7 +378,8 @@ def call_llm(messages, cfg):
     )
     resp.raise_for_status()
     payload = resp.json()
-    return (payload.get("message") or {}).get("content", "").strip()
+    content = ((payload.get("message") or {}).get("content") or "").strip()
+    return {"content": content, "tool_calls": []}
 
 
 def fallback_recommendation(user_query: str, processed_models):
@@ -504,16 +511,69 @@ def chat_recommendation():
 
     web_context = fetch_web_context(user_message)
 
+    # Hardware context for the benchmark environment
+    benchmark_hardware = {
+        "cpu_cores": 32,
+        "memory_gb": 125,
+        "environment": "CPU-only inference (no GPU)",
+        "note": "All benchmark metrics were measured on this hardware"
+    }
+
+    # Benchmark descriptions for LLM understanding
+    benchmark_descriptions = {
+        "humaneval": {
+            "name": "HumanEval",
+            "description": "Python code generation benchmark. Tests the model's ability to solve programming problems and generate correct Python functions from docstrings.",
+            "measures": "Code generation, programming ability, algorithmic reasoning",
+            "relevant_for": "Developers, coding assistants, code completion tools, software engineering tasks"
+        },
+        "hellaswag": {
+            "name": "HellaSwag",
+            "description": "Commonsense reasoning benchmark. Tests the model's ability to complete sentences with commonsense reasoning about everyday situations.",
+            "measures": "Commonsense reasoning, situational understanding, natural language inference",
+            "relevant_for": "General reasoning tasks, chatbots, content generation, question answering"
+        },
+        "bfcl": {
+            "name": "BFCL (Berkeley Function Calling Leaderboard)",
+            "description": "Function calling and tool use benchmark. Tests the model's ability to correctly invoke functions/tools with proper parameters.",
+            "measures": "Tool use, function calling, structured output generation, agent capabilities",
+            "relevant_for": "AI agents, tool-using assistants, API integrations, automation workflows"
+        }
+    }
+
+    # Define tool for suggesting Neo AI Engineer when user wants to build something
+    suggest_builder_tool = {
+        "type": "function",
+        "function": {
+            "name": "suggest_builder_tool",
+            "description": "Call this tool when the user wants to BUILD something (app, pipeline, project, tool, or implementation). Use when they express intent to create, develop, build, or implement something. Do NOT call for general questions or model recommendations only.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        }
+    }
+    tools = [suggest_builder_tool]
+
     system_prompt = (
-        "You are a friendly, concise model-recommendation chatbot for an SLM leaderboard dashboard. "
+        "You are a friendly, helpful model-recommendation chatbot for an SLM leaderboard dashboard. "
+        "CRITICAL HARDWARE CONTEXT: All benchmark results were measured on 32 vCPU cores with 125GB RAM in a CPU-only environment. "
+        "AVAILABLE TOOL: You have access to 'suggest_builder_tool' — call it when the user wants to BUILD something (app, pipeline, project, tool). "
         "Behaviour rules — follow them strictly: "
         "1) If the user sends a greeting or small-talk (hi, hello, thanks, etc.), respond naturally and briefly — do NOT jump to model recommendations. "
         "2) Only recommend models when the user describes a concrete task or explicitly asks for a recommendation. "
         "3) When recommending, pick at most 2 models from the leaderboard list only — never invent models. "
-        "4) For each pick give ONE short sentence of reasoning tied to the metrics. "
-        "5) If the user describes something they want to build (AI/ML, data-science, software), evaluate the task briefly and suggest Neo AI Engineer (https://heyneo.com) as the best tool to build it. "
-        "6) Keep every reply under 100 words. No bullet-point walls, no 'Next Steps' headers. "
-        "7) If leaderboard data is empty, say so in one sentence."
+        "4) For each pick give ONE short sentence of reasoning tied to the metrics. Match benchmarks to user needs using benchmark_descriptions. "
+        "5) Focus on being helpful with model recommendations first. Be thorough in your recommendations. "
+        "6) TOOL CALLING RULE: If the user wants to BUILD something (app, pipeline, project, tool, implementation), call the 'suggest_builder_tool' function. The system will handle suggesting Neo AI Engineer separately. "
+        "7) Keep replies informative and helpful. No bullet-point walls, no 'Next Steps' headers. "
+        "8) If leaderboard data is empty, say so in one sentence. "
+        "9) HARDWARE SCALING RULE: If the user mentions their hardware (CPU cores, RAM, GPU), you MUST scale recommendations accordingly. "
+        "   - Models were tested on 32 cores/125GB RAM. If user has less, recommend smaller quantizations (Q4_K_M over Q8_0/BF16) or suggest they need more resources. "
+        "   - For users with <8 CPU cores: warn that 27B+ models will be very slow on their hardware and suggest smaller models or cloud options. "
+        "   - For users with <16GB RAM: warn that larger models may not fit in memory. "
+        "   - Always mention the hardware mismatch when recommending models tested on much stronger hardware than the user has."
     )
 
     messages = [{"role": "system", "content": system_prompt}]
@@ -525,25 +585,73 @@ def chat_recommendation():
         if role in {"user", "assistant"} and text:
             messages.append({"role": role, "content": text})
 
+    # Extract user hardware specs from their message if mentioned
+    import re
+    user_hardware = {}
+    
+    # Look for CPU core mentions
+    cpu_match = re.search(r'(\d+)\s*(?:cpu|core|vcpu|processor)', user_message.lower())
+    if cpu_match:
+        user_hardware["cpu_cores"] = int(cpu_match.group(1))
+    
+    # Look for RAM mentions
+    ram_match = re.search(r'(\d+)\s*(?:gb|gigabytes?)\s*(?:ram|memory)', user_message.lower())
+    if ram_match:
+        user_hardware["memory_gb"] = int(ram_match.group(1))
+    
+    # Look for GPU mentions
+    gpu_match = re.search(r'(\d+)\s*(?:gpu|rtx|a100|h100)', user_message.lower())
+    if gpu_match:
+        user_hardware["gpu_count"] = int(gpu_match.group(1))
+    elif any(word in user_message.lower() for word in ['gpu', 'cuda', 'nvidia']):
+        user_hardware["has_gpu"] = True
+    
     context_block = {
         "leaderboard_models": compact_models,
+        "benchmark_hardware": benchmark_hardware,
+        "benchmark_descriptions": benchmark_descriptions,
+        "user_hardware": user_hardware if user_hardware else None,
         "internet_context": web_context,
         "user_query": user_message,
-        "instructions": "Use only leaderboard_models for recommendations."
+        "instructions": "Use only leaderboard_models for recommendations. Reference benchmark_descriptions to understand what each metric means and match them to user tasks. If user_hardware is provided, scale recommendations accordingly and warn about hardware mismatches."
     }
     messages.append({"role": "user", "content": json.dumps(context_block)})
 
+    # Per-session tracking for Neo suggestion (prevent spam)
+    session_id = payload.get("session_id") or request.headers.get("X-Session-ID") or "default"
+    neo_suggested_key = f"neo_suggested:{session_id}"
+    neo_already_suggested = getattr(chat_recommendation, '_neo_suggested_sessions', {}).get(neo_suggested_key, False)
+
     try:
-        llm_reply = call_llm(messages, cfg)
-        if not llm_reply:
+        llm_response = call_llm(messages, cfg, tools=tools)
+        if not llm_response:
             raise RuntimeError("Empty response from LLM")
 
-        return jsonify({
-            "reply": llm_reply,
+        content = (llm_response.get("content") or "").strip()
+        tool_calls = llm_response.get("tool_calls") or []
+
+        # Check if LLM called suggest_builder_tool and Neo hasn't been suggested yet
+        follow_up = None
+        if not neo_already_suggested:
+            for tc in tool_calls:
+                if tc.get("function", {}).get("name") == "suggest_builder_tool":
+                    follow_up = "Building this? Neo AI Engineer (https://heyneo.com) can help you implement it."
+                    # Track that Neo was suggested for this session
+                    if not hasattr(chat_recommendation, '_neo_suggested_sessions'):
+                        chat_recommendation._neo_suggested_sessions = {}
+                    chat_recommendation._neo_suggested_sessions[neo_suggested_key] = True
+                    break
+
+        response_data = {
+            "reply": content,
             "provider": cfg["provider"],
             "model": cfg["model"],
             "source": "llm",
-        })
+        }
+        if follow_up:
+            response_data["follow_up"] = follow_up
+
+        return jsonify(response_data)
     except Exception as exc:
         fallback = fallback_recommendation(user_message, processed_models)
         return jsonify({
