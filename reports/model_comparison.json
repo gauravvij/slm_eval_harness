@@ -325,7 +325,7 @@
                 "note": "Full HumanEval evaluation (164 samples) - BF16 quantization. 56.10% accuracy. Exported from checkpoint."
             },
             "hellaswag": {
-                "accuracy": 0.90,
+                "accuracy": 0.9,
                 "samples": 100,
                 "passed": 90,
                 "avg_time_per_sample": 45.5,
@@ -342,9 +342,10 @@
             "inference_metrics": {
                 "ttft_ms": 350.0,
                 "throughput_tok_s": 15.5,
-                "peak_ram_gb": 54.0,
+                "peak_ram_gb": 50.45,
                 "model_size_gb": 53.8,
-                "quantization": "BF16"
+                "quantization": "BF16",
+                "model_ram_usage_gb": 50.32
             }
         },
         "qwen36_27b_q4km": {
@@ -374,9 +375,10 @@
             "inference_metrics": {
                 "ttft_ms": 280.0,
                 "throughput_tok_s": 22.5,
-                "peak_ram_gb": 28.0,
+                "peak_ram_gb": 25.77,
                 "model_size_gb": 16.8,
-                "quantization": "Q4_K_M"
+                "quantization": "Q4_K_M",
+                "model_ram_usage_gb": 25.73
             }
         },
         "qwen36_27b_q80": {
@@ -406,9 +408,10 @@
             "inference_metrics": {
                 "ttft_ms": 320.0,
                 "throughput_tok_s": 18.0,
-                "peak_ram_gb": 42.0,
+                "peak_ram_gb": 26.96,
                 "model_size_gb": 28.6,
-                "quantization": "Q8_0"
+                "quantization": "Q8_0",
+                "model_ram_usage_gb": 26.84
             }
         }
     },

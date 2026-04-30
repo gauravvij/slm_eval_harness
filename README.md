@@ -61,7 +61,44 @@ This harness follows a rigorous, reproducible approach for evaluating Small Lang
 ### Inference Metrics
 - **TTFT (Time to First Token)**: Measured in milliseconds. Critical for interactive responsiveness.
 - **Throughput**: Measured in tokens per second (tok/s). Total generation speed.
-- **Peak RAM**: Measured in GB. The maximum resident memory used during a 50-token generation burst.
+- **Peak RAM**: Measured in GB using `psutil` process RSS (Resident Set Size) — the actual physical RAM pages held by the process at peak, sampled after model load and 2 inference passes (64 tokens each, `n_ctx=512`). Captured via `psutil.Process().memory_info().rss` before load (baseline), after load, and after each inference pass; the maximum across all passes is recorded.
+
+> **Note on mmap and RSS**: `llama-cpp-python` uses memory-mapped I/O by default. RSS reflects only the pages actively touched during inference, not the full model file size. For short inference runs (low token count, small context), RSS may read lower than the full working-set RAM at production context lengths. The values reported here represent a lower-bound baseline; expect higher RAM usage at larger context windows (see Long-Context RAM Scaling Analysis below).
+
+#### How to Re-run RAM Measurements
+
+RAM measurement is handled by the generic `measure_ram.py` tool. It accepts any GGUF model via CLI flags, a JSON config file, or a built-in preset.
+
+```bash
+source venv/bin/activate
+cd /root/slm_eval_harness
+
+# Run a built-in preset (all 3 quants) and update model_comparison.json:
+python measure_ram.py --preset qwen36_27b --update-json
+
+# Measure a single arbitrary GGUF file:
+python measure_ram.py \
+    --model-path /path/to/model.gguf \
+    --model-key  my_model_q4 \
+    --model-label "My Model Q4_K_M" \
+    --update-json
+
+# Measure a custom set of models from a config file:
+python measure_ram.py --config configs/my_models.json --update-json
+
+# Override inference settings (larger context, more passes):
+python measure_ram.py --preset qwen36_27b --n-ctx 2048 --max-tokens 128 --passes 3 --update-json
+```
+
+**Config file format** (`configs/my_models.json`):
+```json
+[
+  { "key": "my_model_q4",   "label": "My Model Q4_K_M", "path": "/path/to/model-Q4_K_M.gguf" },
+  { "key": "my_model_bf16", "label": "My Model BF16",   "path": "/path/to/model-BF16-00001-of-00002.gguf" }
+]
+```
+
+The script loads each model sequentially, unloads and `gc.collect()`s between runs, and writes measured `peak_ram_gb` + `model_ram_usage_gb` into `reports/model_comparison.json` when `--update-json` is passed. Raw results are also saved to `reports/inference_metrics_<preset>_ram.json`.
 
 ## Project Structure
 
