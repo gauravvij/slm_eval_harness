@@ -325,11 +325,12 @@
                 "note": "Full HumanEval evaluation (164 samples) - BF16 quantization. 56.10% accuracy. Exported from checkpoint."
             },
             "hellaswag": {
-                "accuracy": 0.9,
-                "samples": 100,
-                "passed": 90,
+                "accuracy": 0.86,
+                "samples": 200,
+                "passed": 172,
+                "failed": 28,
                 "avg_time_per_sample": 45.5,
-                "note": "Full HellaSwag evaluation (100 samples) - BF16 quantization. 90% accuracy. Completed via cli.py GGUF adapter."
+                "note": "Full HellaSwag evaluation (200 samples) - BF16 quantization. 86% accuracy. Completed via cli.py GGUF adapter."
             },
             "bfcl": {
                 "accuracy": 0.6325,
@@ -358,11 +359,12 @@
                 "note": "Full HumanEval evaluation (164 samples) - Q4_K_M quantization. 50.61% accuracy. Completed via cli.py GGUF adapter."
             },
             "hellaswag": {
-                "accuracy": 0.86,
-                "samples": 100,
-                "passed": 86,
+                "accuracy": 0.84,
+                "samples": 200,
+                "passed": 168,
+                "failed": 32,
                 "avg_time_per_sample": 22.3,
-                "note": "Full HellaSwag evaluation (100 samples) - Q4_K_M quantization. 86% accuracy. Completed via cli.py GGUF adapter."
+                "note": "Full HellaSwag evaluation (200 samples) - Q4_K_M quantization. 84% accuracy. Completed via cli.py GGUF adapter."
             },
             "bfcl": {
                 "accuracy": 0.63,
@@ -391,11 +393,12 @@
                 "note": "Full HumanEval evaluation (164 samples) - Q8_0 quantization. 52.44% accuracy. Resumed from checkpoint at sample 139, completed all 164 samples."
             },
             "hellaswag": {
-                "accuracy": 0.83,
-                "samples": 100,
-                "passed": 83,
+                "accuracy": 0.85,
+                "samples": 200,
+                "passed": 170,
+                "failed": 30,
                 "avg_time_per_sample": 28.7,
-                "note": "Full HellaSwag evaluation (100 samples) - Q8_0 quantization. 83% accuracy. Completed via cli.py GGUF adapter."
+                "note": "Full HellaSwag evaluation (200 samples) - Q8_0 quantization. 85% accuracy."
             },
             "bfcl": {
                 "accuracy": 0.63,
